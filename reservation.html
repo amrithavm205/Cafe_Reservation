@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Brew&Desk | Table Reservation</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f8f5f2;
+color:#333;
+}
+
+/* NAVBAR */
+
+header{
+
+background:#2b1b12;
+
+padding:15px 40px;
+
+position:sticky;
+
+top:0;
+
+z-index:1000;
+
+}
+
+.navbar{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+}
+
+.logo{
+
+color:white;
+
+font-size:24px;
+
+font-weight:bold;
+
+}
+
+.navbar ul{
+
+display:flex;
+
+gap:20px;
+
+list-style:none;
+
+}
+
+.navbar ul li a{
+
+text-decoration:none;
+
+color:white;
+
+transition:.3s;
+
+}
+
+.navbar ul li a:hover{
+
+color:#c89b6d;
+
+}
+
+.nav-buttons a{
+
+text-decoration:none;
+
+padding:8px 15px;
+
+border-radius:5px;
+
+margin-left:10px;
+
+font-weight:bold;
+
+}
+
+.login-btn{
+
+background:white;
+
+color:#2b1b12;
+
+}
+
+.register-btn{
+
+background:#c89b6d;
+
+color:white;
+
+}
+
+/* HERO */
+
+.hero{
+
+height:40vh;
+
+background:
+
+linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+
+url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1600");
+
+background-size:cover;
+
+background-position:center;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+text-align:center;
+
+color:white;
+
+}
+
+.hero h1{
+
+font-size:50px;
+
+margin-bottom:15px;
+
+}
+
+/* FORM */
+
+.container{
+
+max-width:900px;
+
+margin:50px auto;
+
+background:white;
+
+padding:40px;
+
+border-radius:15px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+
+}
+
+.container h2{
+
+text-align:center;
+
+color:#2b1b12;
+
+margin-bottom:30px;
+
+}
+
+.form-group{
+
+margin-bottom:20px;
+
+}
+
+label{
+
+display:block;
+
+margin-bottom:8px;
+
+font-weight:bold;
+
+}
+
+input,
+select,
+textarea{
+
+width:100%;
+
+padding:12px;
+
+border:1px solid #ccc;
+
+border-radius:8px;
+
+font-size:16px;
+
+}
+
+textarea{
+
+resize:none;
+
+height:120px;
+
+}
+
+.row{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:20px;
+
+}
+
+.next-btn{
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+background:#2b1b12;
+
+color:white;
+
+font-size:18px;
+
+border-radius:8px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.next-btn:hover{
+
+background:#c89b6d;
+
+}
+
+/* RADIO BUTTONS */
+
+.radio-group{
+
+display:flex;
+
+gap:20px;
+
+margin-top:10px;
+
+}
+
+.radio-group label{
+
+font-weight:normal;
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+}
+
+.radio-group input{
+
+width:auto;
+
+}
+
+/* PAYMENT */
+
+.payment-options{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:15px;
+
+margin-top:10px;
+
+}
+
+.payment-card{
+
+border:2px solid #ddd;
+
+padding:15px;
+
+border-radius:10px;
+
+cursor:pointer;
+
+transition:.3s;
+
+text-align:center;
+
+font-weight:bold;
+
+}
+
+.payment-card:hover{
+
+border-color:#c89b6d;
+
+background:#fff8f2;
+
+}
+
+.payment-card input{
+
+margin-right:10px;
+
+}
+
+/* FOOTER */
+
+footer{
+
+background:#2b1b12;
+
+color:white;
+
+padding:20px 40px;
+
+margin-top:40px;
+
+}
+
+.footer-content{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+flex-wrap:wrap;
+
+}
+
+.social-icons a{
+
+color:white;
+
+margin:0 10px;
+
+font-size:20px;
+
+transition:.3s;
+
+}
+
+.social-icons a:hover{
+
+color:#c89b6d;
+
+}
+
+@media(max-width:768px){
+
+.navbar{
+
+flex-direction:column;
+
+gap:15px;
+
+}
+
+.navbar ul{
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+}
+
+.row{
+
+grid-template-columns:1fr;
+
+}
+
+.payment-options{
+
+grid-template-columns:1fr;
+
+}
+
+.footer-content{
+
+flex-direction:column;
+
+gap:20px;
+
+text-align:center;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="navbar">
+
+<div class="logo">
+<i class="fa-solid fa-mug-hot"></i>
+ Brew&Desk
+</div>
+
+<ul>
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="menu.html">Menu</a></li>
+
+<li><a href="about.html">About Us</a></li>
+
+<li><a href="reservation.html">Reservation</a></li>
+
+<li><a href="contact.html">Contact</a></li>
+
+</ul>
+
+<div class="nav-buttons">
+
+<a href="login.html" class="login-btn">Login</a>
+
+<a href="register.html" class="register-btn">Register</a>
+
+</div>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div>
+
+<h1>Reserve Your Table</h1>
+
+<p>Reserve your table and enjoy a seamless dine-in experience.</p>
+
+</div>
+
+</section>
+
+<div class="container">
+
+<h2>Reservation Form</h2>
+
+<form id="reservationForm">
+
+<div class="row">
+
+<div class="form-group">
+
+<label>Full Name</label>
+
+<input type="text" required>
+
+</div>
+
+<div class="form-group">
+
+<label>Mobile Number</label>
+
+<input type="tel" required>
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="form-group">
+
+<label>Email Address</label>
+
+<input type="email" required>
+
+</div>
+
+<div class="form-group">
+
+<label>Number of Guests</label>
+
+<select required>
+
+<option>Select</option>
+
+<option>1</option>
+
+<option>2</option>
+
+<option>3</option>
+
+<option>4</option>
+
+<option>5</option>
+
+<option>6+</option>
+
+</select>
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="form-group">
+
+<label>Reservation Date</label>
+
+<input type="date" required>
+
+</div>
+
+<div class="form-group">
+
+<label>Reservation Time</label>
+
+<input type="time" required>
+
+</div>
+
+</div>
+
+<div class="form-group">
+
+<label>Special Occasion</label>
+
+<select>
+
+<option>None</option>
+
+<option>Birthday</option>
+
+<option>Anniversary</option>
+
+<option>Family Gathering</option>
+
+<option>Business Meeting</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Special Requests</label>
+
+<textarea placeholder="Any special requests..."></textarea>
+
+</div>
+
+<!-- PRE-ORDER OPTION -->
+
+<div class="form-group">
+
+<label>Would you like to Pre-Order Food?</label>
+
+<div class="radio-group">
+
+<label>
+
+<input type="radio" name="preorder" value="yes" onclick="showMenuButton()">
+
+Yes
+
+</label>
+
+<label>
+
+<input type="radio" name="preorder" value="no" checked onclick="hideMenuButton()">
+
+No
+
+</label>
+
+</div>
+
+</div>
+
+<div class="form-group" id="menuSection" style="display:none;">
+
+<a href="menu.html">
+
+<button type="button" class="next-btn">
+
+Browse Menu & Pre-Order Food
+
+</button>
+
+</a>
+
+</div>
+
+<!-- PAYMENT -->
+
+<div class="form-group">
+
+<label>Select Payment Method</label>
+
+<div class="payment-options">
+
+<label class="payment-card">
+
+<input type="radio" name="payment" required>
+
+Google Pay
+
+</label>
+
+<label class="payment-card">
+
+<input type="radio" name="payment">
+
+PhonePe
+
+</label>
+
+<label class="payment-card">
+
+<input type="radio" name="payment">
+
+Credit / Debit Card
+
+</label>
+
+<label class="payment-card">
+
+<input type="radio" name="payment">
+
+Cash at Café
+
+</label>
+
+</div>
+
+</div>
+
+<button type="submit" class="next-btn">
+
+Confirm Reservation
+
+</button>
+
+</form>
+
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="footer-content">
+
+<p>
+
+&copy; 2026 Brew&Desk. All Rights Reserved.
+
+</p>
+
+<div class="social-icons">
+
+<a href="#"><i class="fab fa-facebook-f"></i></a>
+
+<a href="#"><i class="fab fa-instagram"></i></a>
+
+<a href="#"><i class="fab fa-twitter"></i></a>
+
+</div>
+
+</div>
+
+</footer>
+
+<script>
+
+function showMenuButton(){
+
+document.getElementById("menuSection").style.display="block";
+
+}
+
+function hideMenuButton(){
+
+document.getElementById("menuSection").style.display="none";
+
+}
+
+document.getElementById("reservationForm")
+
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+alert(
+
+"Reservation Submitted Successfully!\n\nOur system will automatically assign a suitable table based on availability."
+
+);
+
+});
+
+</script>
+
+</body>
+
+</html>

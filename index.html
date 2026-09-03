@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brew&Desk - Smart Café Reservation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f8f5f2;
+            color: #333;
+        }
+
+        /* Navbar */
+        header {
+            background: #2b1b12;
+            padding: 15px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .navbar ul li a:hover {
+            color: #c89b6d;
+        }
+
+        .nav-buttons a {
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin-left: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .login-btn {
+            background: white;
+            color: #2b1b12;
+        }
+
+        .register-btn {
+            background: #c89b6d;
+            color: white;
+        }
+
+        .login-btn:hover,
+        .register-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 85vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                        url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            margin-bottom: 25px;
+            max-width: 700px;
+        }
+
+        .hero-buttons a {
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 6px;
+            margin: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .reserve-btn {
+            background: #c89b6d;
+            color: white;
+        }
+
+        .reserve-btn:hover {
+            background: #b88658;
+        }
+
+        .menu-btn {
+            border: 2px solid white;
+            color: white;
+        }
+
+        .menu-btn:hover {
+            background: white;
+            color: #2b1b12;
+        }
+
+        /* Why Choose Us */
+        .why-choose {
+            padding: 60px 40px;
+            text-align: center;
+            background: white;
+        }
+
+        .why-choose h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: #2b1b12;
+        }
+
+        .why-choose p {
+            color: #666;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .feature-box {
+            background: #f8f5f2;
+            padding: 25px;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .feature-box i {
+            font-size: 35px;
+            color: #c89b6d;
+            margin-bottom: 15px;
+        }
+
+        .feature-box h3 {
+            margin-bottom: 10px;
+            color: #2b1b12;
+        }
+
+        /* Footer */
+        footer {
+            background: #2b1b12;
+            color: white;
+            padding: 20px 40px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .social-icons a {
+            color: white;
+            margin: 0 10px;
+            font-size: 20px;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #c89b6d;
+        }
+
+        .admin-login a {
+            text-decoration: none;
+            background: #c89b6d;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .admin-login a:hover {
+            background: #b88658;
+        }
+
+        @media(max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .navbar ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero-content h1 {
+                font-size: 42px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <div class="navbar">
+            <div class="logo">Brew&Desk</div>
+
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="reservation.html">Reservation</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <div class="nav-buttons">
+                <a href="login.html" class="login-btn">Login</a>
+                <a href="register.html" class="register-btn">Register</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Brew&Desk</h1>
+            <p>
+                Good Coffee, Good Food, Good Work. Reserve your table,
+                pre-order your favorite food, and enjoy a seamless café experience.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="reservation.html" class="reserve-btn">Reserve a Table</a>
+                <a href="menu.html" class="menu-btn">Explore Menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose">
+        <h2>Why Choose Brew&Desk?</h2>
+        <p>We provide the perfect blend of comfort, quality food, and convenient café services.</p>
+
+        <div class="features">
+
+            <div class="feature-box">
+                <i class="fa-solid fa-mug-hot"></i>
+                <h3>Cozy Ambience</h3>
+                <p>A perfect place to relax, work, and enjoy your favorite coffee.</p>
+            </div>
+
+            <div class="feature-box">
+                <i class="fa-solid fa-utensils"></i>
+                <h3>Fresh & Tasty Food</h3>
+                <p>Made with quality ingredients to give you the best taste.</p>
+            </div>
+
+            <div class="feature-box">
+                <i class="fa-solid fa-calendar-check"></i>
+                <h3>Easy Reservation</h3>
+                <p>Book your table online and avoid waiting at the café.</p>
+            </div>
+
+            <div class="feature-box">
+                <i class="fa-solid fa-credit-card"></i>
+                <h3>Pre-Order Convenience</h3>
+                <p>Pre-order food while reserving and save your dining time.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+
+            <p>&copy; 2026 Brew&Desk. All rights reserved.</p>
+
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+
+            <div class="admin-login">
+                <a href="admin_login.html">Admin Login</a>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Welcome message in browser console
+        window.onload = function () {
+            console.log("Welcome to Brew&Desk Café!");
+        };
+
+        // Reserve button click effect
+        const reserveBtn = document.querySelector(".reserve-btn");
+    </script>
+
+</body>
+</html>

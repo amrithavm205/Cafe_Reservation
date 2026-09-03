@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Brew&Desk | Admin Login</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f8f5f2;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    background:#2b1b12;
+    padding:18px 40px;
+}
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    color:white;
+    font-size:25px;
+    font-weight:bold;
+}
+
+.logo i{
+    margin-right:5px;
+}
+
+.back-home{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    padding:9px 16px;
+    border-radius:6px;
+    transition:.3s;
+}
+
+.back-home:hover{
+    background:#c89b6d;
+}
+
+/* ================= LOGIN SECTION ================= */
+
+.login-section{
+
+    flex:1;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:50px 20px;
+
+    background:
+    linear-gradient(rgba(43,27,18,.65),rgba(43,27,18,.65)),
+    url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1600");
+
+    background-size:cover;
+
+    background-position:center;
+
+}
+
+/* ================= LOGIN CARD ================= */
+
+.login-card{
+
+    width:100%;
+
+    max-width:450px;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:15px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+
+}
+
+.login-header{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+.admin-icon{
+
+    width:80px;
+
+    height:80px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:#c89b6d;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:white;
+
+    font-size:35px;
+
+}
+
+.login-header h1{
+
+    margin-top:18px;
+
+    color:#2b1b12;
+
+    font-size:28px;
+
+}
+
+.login-header p{
+
+    margin-top:8px;
+
+    color:#666;
+
+}
+
+/* ================= FORM ================= */
+
+.form-group{
+
+    margin-bottom:20px;
+
+}
+
+.form-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:bold;
+
+    color:#2b1b12;
+
+}
+
+.input-box{
+
+    position:relative;
+
+}
+
+.input-box i{
+
+    position:absolute;
+
+    left:15px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:#888;
+
+}
+
+.input-box input{
+
+    width:100%;
+
+    padding:13px 45px;
+
+    border:1px solid #ccc;
+
+    border-radius:8px;
+
+    font-size:16px;
+
+    outline:none;
+
+}
+
+.input-box input:focus{
+
+    border-color:#c89b6d;
+
+    box-shadow:0 0 5px rgba(200,155,109,.3);
+
+}
+
+/* Password eye */
+
+.password-eye{
+
+    position:absolute;
+
+    right:15px;
+
+    left:auto !important;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    cursor:pointer;
+
+    color:#777;
+
+}
+
+.password-eye:hover{
+
+    color:#2b1b12;
+
+}
+
+/* ================= OPTIONS ================= */
+
+.login-options{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+    font-size:14px;
+
+}
+
+.remember{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    color:#555;
+
+}
+
+.remember input{
+
+    accent-color:#2b1b12;
+
+}
+
+.forgot{
+
+    text-decoration:none;
+
+    color:#2b1b12;
+
+    font-weight:bold;
+
+}
+
+.forgot:hover{
+
+    color:#c89b6d;
+
+}
+
+/* ================= LOGIN BUTTON ================= */
+
+.login-button{
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#2b1b12;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.login-button:hover{
+
+    background:#c89b6d;
+
+}
+
+
+/* ================= FOOTER ================= */
+
+footer{
+
+    background:#2b1b12;
+
+    color:white;
+
+    text-align:center;
+
+    padding:18px;
+
+    font-size:14px;
+
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:600px){
+
+    header{
+
+        padding:15px 20px;
+
+    }
+
+    .navbar{
+
+        flex-direction:column;
+
+        gap:12px;
+
+    }
+
+    .login-card{
+
+        padding:30px 22px;
+
+    }
+
+    .login-options{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:12px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+<div class="navbar">
+
+<div class="logo">
+
+<i class="fa-solid fa-mug-hot"></i>
+
+Brew&Desk
+
+</div>
+
+<a href="index.html" class="back-home">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+Back to Home
+
+</a>
+
+</div>
+
+</header>
+
+
+<!-- ================= LOGIN SECTION ================= -->
+
+<section class="login-section">
+
+<div class="login-card">
+
+<div class="login-header">
+
+<div class="admin-icon">
+
+<i class="fa-solid fa-user-shield"></i>
+
+</div>
+
+<h1>Admin Login</h1>
+
+<p>Login to manage your Brew&Desk system.</p>
+
+</div>
+
+
+<form id="adminLoginForm">
+
+
+<!-- Username -->
+
+<div class="form-group">
+
+<label>Admin Email</label>
+
+<div class="input-box">
+
+<i class="fa-solid fa-envelope"></i>
+
+<input
+type="email"
+id="adminEmail"
+placeholder="Enter admin email"
+required>
+
+</div>
+
+</div>
+
+
+<!-- Password -->
+
+<div class="form-group">
+
+<label>Password</label>
+
+<div class="input-box">
+
+<i class="fa-solid fa-lock"></i>
+
+<input
+type="password"
+id="adminPassword"
+placeholder="Enter password"
+required>
+
+<i class="fa-solid fa-eye password-eye"
+id="togglePassword"></i>
+
+</div>
+
+</div>
+
+
+<!-- Options -->
+
+<div class="login-options">
+
+<label class="remember">
+
+<input type="checkbox" id="rememberMe">
+
+Remember Me
+
+</label>
+
+<a href="#" class="forgot"
+onclick="forgotPassword()">
+
+Forgot Password?
+
+</a>
+
+</div>
+
+
+<!-- Login -->
+
+<button type="submit" class="login-button">
+
+<i class="fa-solid fa-right-to-bracket"></i>
+
+&nbsp; Login to Dashboard
+
+</button>
+
+
+</form>
+
+
+
+
+</div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<p>
+
+&copy; 2026 Brew&Desk. All Rights Reserved.
+
+</p>
+
+</footer>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+/* ================= PASSWORD SHOW / HIDE ================= */
+
+const passwordInput =
+document.getElementById("adminPassword");
+
+const togglePassword =
+document.getElementById("togglePassword");
+
+
+togglePassword.addEventListener("click", function(){
+
+if(passwordInput.type === "password"){
+
+passwordInput.type = "text";
+
+/* Open eye means password is visible */
+
+togglePassword.classList.remove("fa-eye");
+
+togglePassword.classList.add("fa-eye-slash");
+
+}
+
+else{
+
+passwordInput.type = "password";
+
+/* Closed eye means password is hidden */
+
+togglePassword.classList.remove("fa-eye-slash");
+
+togglePassword.classList.add("fa-eye");
+
+}
+
+});
+
+
+/* ================= LOGIN ================= */
+
+document.getElementById("adminLoginForm")
+.addEventListener("submit", function(e){
+
+e.preventDefault();
+
+const email =
+document.getElementById("adminEmail").value.trim();
+
+const password =
+document.getElementById("adminPassword").value;
+
+
+/*
+Temporary frontend login.
+
+We will replace this with PHP + MySQL
+when the backend is connected.
+*/
+
+if(email === "" || password === ""){
+
+alert("Please enter your email and password.");
+
+return;
+
+}
+
+alert("Admin Login Successful!");
+
+window.location.href="admin_dashboard.html";
+
+});
+
+
+/* ================= FORGOT PASSWORD ================= */
+
+function forgotPassword(){
+
+alert("Forgot Password feature will be connected during backend integration.");
+
+}
+
+
+/* ================= CONSOLE MESSAGE ================= */
+
+window.onload=function(){
+
+console.log("Welcome to Brew&Desk Admin Login");
+
+};
+
+</script>
+
+</body>
+
+</html>

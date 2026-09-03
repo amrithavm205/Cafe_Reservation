@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Brew&Desk | Login</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f8f5f2;
+color:#333;
+}
+
+/* ================= NAVBAR ================= */
+
+header{
+
+background:#2b1b12;
+
+padding:15px 40px;
+
+position:sticky;
+
+top:0;
+
+z-index:1000;
+
+}
+
+.navbar{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+}
+
+.logo{
+
+font-size:25px;
+
+font-weight:bold;
+
+color:white;
+
+}
+
+.navbar ul{
+
+display:flex;
+
+list-style:none;
+
+gap:20px;
+
+}
+
+.navbar ul li a{
+
+text-decoration:none;
+
+color:white;
+
+transition:.3s;
+
+}
+
+.navbar ul li a:hover{
+
+color:#c89b6d;
+
+}
+
+.nav-buttons a{
+
+text-decoration:none;
+
+padding:8px 15px;
+
+margin-left:10px;
+
+border-radius:5px;
+
+font-weight:bold;
+
+}
+
+.login-btn{
+
+background:white;
+
+color:#2b1b12;
+
+}
+
+.register-btn{
+
+background:#c89b6d;
+
+color:white;
+
+}
+
+/* ================= HERO ================= */
+
+.hero{
+
+height:35vh;
+
+background:
+
+linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+
+url("https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=1600");
+
+background-size:cover;
+
+background-position:center;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+text-align:center;
+
+color:white;
+
+}
+
+.hero h1{
+
+font-size:50px;
+
+margin-bottom:10px;
+
+}
+
+/* ================= LOGIN BOX ================= */
+
+.login-container{
+
+max-width:450px;
+
+margin:50px auto;
+
+background:white;
+
+padding:40px;
+
+border-radius:15px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+
+}
+
+.login-container h2{
+
+text-align:center;
+
+margin-bottom:30px;
+
+color:#2b1b12;
+
+}
+
+.form-group{
+
+margin-bottom:20px;
+
+}
+
+label{
+
+display:block;
+
+margin-bottom:8px;
+
+font-weight:bold;
+
+}
+
+.input-box{
+
+position:relative;
+
+}
+
+.input-box i{
+
+position:absolute;
+
+left:15px;
+
+top:15px;
+
+color:#888;
+
+}
+
+input{
+
+width:100%;
+
+padding:12px 12px 12px 45px;
+
+border:1px solid #ccc;
+
+border-radius:8px;
+
+font-size:16px;
+
+outline:none;
+
+}
+
+input:focus{
+
+border-color:#c89b6d;
+
+}
+
+.login-button{
+
+width:100%;
+
+padding:14px;
+
+background:#2b1b12;
+
+color:white;
+
+border:none;
+
+border-radius:8px;
+
+font-size:17px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.login-button:hover{
+
+background:#c89b6d;
+
+}
+
+/* ================= REGISTER LINK ================= */
+
+.register-link{
+
+text-align:center;
+
+margin-top:25px;
+
+}
+
+.register-link a{
+
+text-decoration:none;
+
+color:#2b1b12;
+
+font-weight:bold;
+
+}
+
+.register-link a:hover{
+
+color:#c89b6d;
+
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+
+background:#2b1b12;
+
+color:white;
+
+padding:20px 40px;
+
+margin-top:50px;
+
+}
+
+.footer-content{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+flex-wrap:wrap;
+
+}
+
+.social-icons a{
+
+color:white;
+
+margin:0 10px;
+
+font-size:20px;
+
+transition:.3s;
+
+}
+
+.social-icons a:hover{
+
+color:#c89b6d;
+
+}
+
+
+@media(max-width:768px){
+
+.navbar{
+
+flex-direction:column;
+
+gap:15px;
+
+}
+
+.navbar ul{
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+}
+
+.login-container{
+
+width:90%;
+
+padding:25px;
+
+}
+
+.footer-content{
+
+flex-direction:column;
+
+gap:20px;
+
+text-align:center;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="navbar">
+
+<div class="logo">
+
+<i class="fa-solid fa-mug-hot"></i>
+
+ Brew&Desk
+
+</div>
+
+<ul>
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="menu.html">Menu</a></li>
+
+<li><a href="about.html">About Us</a></li>
+
+<li><a href="reservation.html">Reservation</a></li>
+
+<li><a href="contact.html">Contact</a></li>
+
+</ul>
+
+<div class="nav-buttons">
+
+<a href="login.html" class="login-btn">Login</a>
+
+<a href="register.html" class="register-btn">Register</a>
+
+</div>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div>
+
+<h1>Welcome Back</h1>
+
+<p>Login to reserve your table and manage your bookings.</p>
+
+</div>
+
+</section>
+
+<div class="login-container">
+
+<h2>Customer Login</h2>
+
+<form id="loginForm">
+
+<div class="form-group">
+
+<label>Email Address</label>
+
+<div class="input-box">
+
+<i class="fa-solid fa-envelope"></i>
+
+<input
+type="email"
+placeholder="Enter your email"
+required>
+
+</div>
+
+</div>
+
+<button type="submit" class="login-button">
+
+Login
+
+</button>
+
+<div class="register-link">
+
+<p>
+
+Don't have an account?
+
+<a href="register.html">
+
+Register Here
+
+</a>
+
+</p>
+
+</div>
+
+</form>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<div class="footer-content">
+
+<p>&copy; 2026 Brew&Desk. All Rights Reserved.</p>
+
+<div class="social-icons">
+
+<a href="#"><i class="fab fa-facebook-f"></i></a>
+
+<a href="#"><i class="fab fa-instagram"></i></a>
+
+<a href="#"><i class="fab fa-x-twitter"></i></a>
+
+<a href="#"><i class="fab fa-linkedin-in"></i></a>
+
+</div>
+
+</div>
+
+</footer>
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+// Login Form
+
+document.getElementById("loginForm").addEventListener("submit", function(e){
+
+e.preventDefault();
+
+alert("Login Successful!");
+
+window.location.href="index.html";
+
+});
+
+
+
+// Console Message
+
+window.onload=function(){
+
+console.log("Welcome to Brew&Desk Login Page");
+
+};
+
+</script>
+
+</body>
+
+</html>

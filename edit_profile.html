@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Brew&Desk | Edit Profile</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f8f5f2;
+color:#333;
+}
+
+
+/*============= NAVBAR =============*/
+
+header{
+
+background:#2b1b12;
+padding:15px 40px;
+position:sticky;
+top:0;
+z-index:1000;
+
+}
+
+.navbar{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+}
+
+.logo{
+
+font-size:24px;
+font-weight:bold;
+color:white;
+
+}
+
+.navbar ul{
+
+display:flex;
+gap:20px;
+list-style:none;
+
+}
+
+.navbar ul li a{
+
+text-decoration:none;
+color:white;
+transition:.3s;
+
+}
+
+.navbar ul li a:hover{
+
+color:#c89b6d;
+
+}
+
+.nav-buttons a{
+
+text-decoration:none;
+padding:8px 15px;
+border-radius:5px;
+font-weight:bold;
+
+}
+
+.profile-btn{
+
+background:#c89b6d;
+color:white;
+
+}
+
+
+/*============= HERO SECTION =============*/
+
+.hero{
+
+height:35vh;
+
+background:
+linear-gradient(rgba(0,0,0,.6),
+rgba(0,0,0,.6)),
+
+url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1600");
+
+background-size:cover;
+background-position:center;
+
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+
+}
+
+
+.hero h1{
+
+font-size:48px;
+margin-bottom:10px;
+
+}
+
+.hero p{
+
+font-size:18px;
+
+}
+
+
+/*============= FORM SECTION =============*/
+
+.container{
+
+max-width:800px;
+margin:50px auto;
+background:white;
+padding:40px;
+border-radius:15px;
+
+box-shadow:
+0 10px 25px
+rgba(0,0,0,.1);
+
+}
+
+
+.profile-icon{
+
+text-align:center;
+margin-bottom:25px;
+
+}
+
+.profile-icon i{
+
+font-size:120px;
+color:#c89b6d;
+
+}
+
+
+.container h2{
+
+text-align:center;
+color:#2b1b12;
+margin-bottom:30px;
+
+}
+
+
+.row{
+
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+
+}
+
+
+.form-group{
+
+margin-bottom:20px;
+
+}
+
+
+label{
+
+display:block;
+margin-bottom:8px;
+font-weight:bold;
+
+}
+
+
+input,
+select{
+
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+
+}
+
+
+input:focus,
+select:focus{
+
+outline:none;
+border-color:#c89b6d;
+
+}
+
+
+.buttons{
+
+margin-top:25px;
+display:flex;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
+
+}
+
+
+.buttons button{
+
+padding:12px 25px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:16px;
+transition:.3s;
+
+}
+
+
+.save-btn{
+
+background:#2b1b12;
+color:white;
+
+}
+
+
+.back-btn{
+
+background:#c89b6d;
+color:white;
+
+}
+
+
+.buttons button:hover{
+
+opacity:.9;
+
+}
+
+
+
+/*============= FOOTER =============*/
+
+footer{
+
+background:#2b1b12;
+color:white;
+padding:20px 40px;
+margin-top:50px;
+
+}
+
+.footer-content{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+
+}
+
+
+.social-icons a{
+
+color:white;
+margin:0 10px;
+font-size:20px;
+
+}
+
+
+.social-icons a:hover{
+
+color:#c89b6d;
+
+}
+
+
+.admin-login a{
+
+text-decoration:none;
+background:#c89b6d;
+padding:10px 18px;
+color:white;
+border-radius:6px;
+font-weight:bold;
+
+}
+
+
+
+/*============= RESPONSIVE =============*/
+
+@media(max-width:768px){
+
+.navbar{
+
+flex-direction:column;
+gap:15px;
+
+}
+
+.navbar ul{
+
+flex-wrap:wrap;
+justify-content:center;
+
+}
+
+.row{
+
+grid-template-columns:1fr;
+
+}
+
+.container{
+
+width:90%;
+
+}
+
+.footer-content{
+
+flex-direction:column;
+gap:20px;
+text-align:center;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!--============= NAVBAR =============-->
+
+<header>
+
+<div class="navbar">
+
+<div class="logo">
+
+<i class="fa-solid fa-mug-hot"></i>
+ Brew&Desk
+
+</div>
+
+
+<ul>
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="menu.html">Menu</a></li>
+
+<li><a href="reservation.html">Reservation</a></li>
+
+<li><a href="contact.html">Contact</a></li>
+
+</ul>
+
+
+<div class="nav-buttons">
+
+<a href="profile.html"
+class="profile-btn">
+
+My Profile
+
+</a>
+
+</div>
+
+</div>
+
+</header>
+
+
+
+<!--============= HERO SECTION =============-->
+
+<section class="hero">
+
+<div>
+
+<h1>Edit Profile</h1>
+
+<p>
+
+Update your Brew&Desk account details.
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<!--============= EDIT PROFILE FORM =============-->
+
+<div class="container">
+
+
+<div class="profile-icon">
+
+<i class="fa-solid fa-circle-user"></i>
+
+</div>
+
+
+<h2>Edit Your Profile</h2>
+
+
+<form id="editForm">
+
+
+<div class="row">
+
+<div class="form-group">
+
+<label>Full Name</label>
+
+<input type="text"
+value="Amritha V Madhu"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Mobile Number</label>
+
+<input type="tel"
+value="9876543210"
+required>
+
+</div>
+
+</div>
+
+
+
+<div class="row">
+
+<div class="form-group">
+
+<label>Date of Birth</label>
+
+<input type="date"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Gender</label>
+
+<select required>
+
+<option>Female</option>
+<option>Male</option>
+<option>Other</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+
+<div class="form-group">
+
+<label>Profile Picture</label>
+
+<input type="file">
+
+</div>
+
+
+
+<div class="buttons">
+
+<button type="submit"
+class="save-btn">
+
+Save Changes
+
+</button>
+
+
+<button type="button"
+class="back-btn"
+
+onclick="location.href='profile.html'">
+
+Back to Profile
+
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+
+
+<!--============= FOOTER =============-->
+
+<footer>
+
+<div class="footer-content">
+
+<p>
+
+&copy; 2026 Brew&Desk.
+All Rights Reserved.
+
+</p>
+
+
+<div class="social-icons">
+
+<a href="#"><i class="fab fa-facebook-f"></i></a>
+
+<a href="#"><i class="fab fa-instagram"></i></a>
+
+<a href="#"><i class="fab fa-x-twitter"></i></a>
+
+</div>
+
+
+<div class="admin-login">
+
+<a href="admin/login.php">
+
+Admin Login
+
+</a>
+
+</div>
+
+</div>
+
+</footer>
+
+
+
+<script>
+
+
+document.getElementById("editForm")
+.addEventListener("submit",
+
+function(e){
+
+e.preventDefault();
+
+alert(
+"Your profile has been updated successfully!"
+);
+
+});
+
+
+</script>
+
+</body>
+</html>

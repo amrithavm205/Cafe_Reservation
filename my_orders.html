@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Brew&Desk | My Orders</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f8f5f2;
+color:#333;
+}
+
+/*================ NAVBAR ================*/
+
+header{
+background:#2b1b12;
+padding:15px 40px;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:24px;
+font-weight:bold;
+color:white;
+}
+
+.navbar ul{
+display:flex;
+gap:20px;
+list-style:none;
+}
+
+.navbar ul li a{
+text-decoration:none;
+color:white;
+transition:.3s;
+}
+
+.navbar ul li a:hover{
+color:#c89b6d;
+}
+
+.nav-buttons a{
+text-decoration:none;
+padding:8px 15px;
+border-radius:5px;
+margin-left:10px;
+font-weight:bold;
+}
+
+.login-btn{
+background:white;
+color:#2b1b12;
+}
+
+.register-btn{
+background:#c89b6d;
+color:white;
+}
+
+
+/*================ HERO ================*/
+
+.hero{
+
+height:35vh;
+
+background:
+linear-gradient(rgba(0,0,0,.6),
+rgba(0,0,0,.6)),
+url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1600");
+
+background-size:cover;
+background-position:center;
+
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+
+}
+
+.hero h1{
+font-size:48px;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:18px;
+}
+
+
+/*================ ORDER SECTION ================*/
+
+.container{
+
+max-width:1000px;
+margin:50px auto;
+padding:30px;
+padding-bottom:70px;
+
+}
+
+.order-card{
+
+background:white;
+padding:25px;
+margin-bottom:25px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+
+}
+
+.order-card h3{
+
+color:#2b1b12;
+margin-bottom:15px;
+
+}
+
+.order-details{
+
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+
+}
+
+.detail{
+
+background:#f8f5f2;
+padding:15px;
+border-radius:10px;
+
+}
+
+.detail strong{
+display:block;
+margin-bottom:8px;
+color:#2b1b12;
+}
+
+.status{
+
+display:inline-block;
+padding:8px 15px;
+border-radius:20px;
+font-size:14px;
+font-weight:bold;
+margin-top:10px;
+
+}
+
+.preparing{
+background:#fff3cd;
+color:#856404;
+}
+
+.completed{
+background:#d4edda;
+color:#155724;
+}
+
+.cancelled{
+background:#f8d7da;
+color:#721c24;
+}
+
+
+/*================ BUTTONS ================*/
+
+.buttons{
+
+margin-top:25px;
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+
+}
+
+.buttons button{
+
+padding:12px 20px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:15px;
+color:white;
+transition:.3s;
+
+}
+
+.cancel-btn{
+background:#b22222;
+}
+
+.reservation-btn{
+background:#3c7a4c;
+}
+
+.buttons button:hover{
+opacity:.9;
+}
+
+
+/*================ FOOTER ================*/
+
+footer{
+
+background:#2b1b12;
+color:white;
+padding:20px 40px;
+margin-top:50px;
+
+}
+
+.footer-content{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+
+}
+
+.social-icons a{
+
+color:white;
+margin:0 10px;
+font-size:20px;
+transition:.3s;
+
+}
+
+.social-icons a:hover{
+color:#c89b6d;
+}
+
+.admin-login a{
+
+text-decoration:none;
+background:#c89b6d;
+padding:10px 18px;
+color:white;
+border-radius:6px;
+font-weight:bold;
+
+}
+
+
+/*================ RESPONSIVE ================*/
+
+@media(max-width:768px){
+
+.navbar{
+flex-direction:column;
+gap:15px;
+}
+
+.navbar ul{
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.order-details{
+grid-template-columns:1fr;
+}
+
+.footer-content{
+flex-direction:column;
+gap:20px;
+text-align:center;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<header>
+
+<div class="navbar">
+
+<div class="logo">
+<i class="fa-solid fa-mug-hot"></i>
+ Brew&Desk
+</div>
+
+<ul>
+
+<li><a href="index.html">Home</a></li>
+<li><a href="menu.html">Menu</a></li>
+<li><a href="about.html">About Us</a></li>
+<li><a href="reservation.html">Reservation</a></li>
+<li><a href="contact.html">Contact</a></li>
+
+</ul>
+
+<div class="nav-buttons">
+
+<a href="login.html" class="login-btn">Login</a>
+<a href="register.html" class="register-btn">Register</a>
+
+</div>
+
+</div>
+
+</header>
+
+
+
+<section class="hero">
+
+<div>
+
+<h1>My Orders</h1>
+
+<p>
+View and manage all your Brew&Desk pre-orders.
+</p>
+
+</div>
+
+</section>
+
+
+
+<div class="container">
+
+
+<div class="order-card" style="text-align:center; padding:50px 25px;">
+
+    <i class="fa-solid fa-cart-shopping"
+       style="font-size:40px; color:#c89b6d; margin-bottom:15px;">
+    </i>
+
+    <h3>No Orders Yet</h3>
+
+    <p style="color:#777; margin-top:10px;">
+        Your pre-orders will appear here after you place an order.
+    </p>
+
+</div>
+
+
+</div>
+
+
+
+<footer>
+
+<div class="footer-content">
+
+<p>
+&copy; 2026 Brew&Desk.
+All Rights Reserved.
+</p>
+
+
+<div class="social-icons">
+
+<a href="#"><i class="fab fa-facebook-f"></i></a>
+<a href="#"><i class="fab fa-instagram"></i></a>
+<a href="#"><i class="fab fa-x-twitter"></i></a>
+<a href="#"><i class="fab fa-linkedin-in"></i></a>
+
+</div>
+
+
+<div class="admin-login">
+
+<a href="admin/login.php">
+Admin Login
+</a>
+
+</div>
+
+</div>
+
+</footer>
+
+
+
+<script>
+
+function cancelOrder(){
+
+if(confirm("Are you sure you want to cancel this order?")){
+
+alert("Your order has been cancelled successfully.");
+
+}
+
+}
+
+
+window.onload=function(){
+
+console.log("Welcome to Brew&Desk My Orders Page");
+
+}
+
+</script>
+
+</body>
+</html>

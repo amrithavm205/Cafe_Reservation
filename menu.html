@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brew&Desk | Our Menu</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f8f5f2;
+    color:#333;
+}
+
+/* ================= NAVBAR ================= */
+
+header{
+    background:#2b1b12;
+    padding:15px 40px;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    color:#fff;
+    font-size:26px;
+    font-weight:bold;
+}
+
+.navbar ul{
+    display:flex;
+    list-style:none;
+    gap:25px;
+}
+
+.navbar ul li a{
+    text-decoration:none;
+    color:white;
+    transition:.3s;
+}
+
+.navbar ul li a:hover{
+    color:#c89b6d;
+}
+
+.nav-buttons a{
+    text-decoration:none;
+    padding:10px 18px;
+    border-radius:5px;
+    font-weight:bold;
+    margin-left:10px;
+}
+
+.login-btn{
+    background:white;
+    color:#2b1b12;
+}
+
+.register-btn{
+    background:#c89b6d;
+    color:white;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+
+height:45vh;
+
+background:
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1600&auto=format&fit=crop");
+
+background-size:cover;
+background-position:center;
+
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+
+}
+
+.hero h1{
+font-size:55px;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:18px;
+max-width:700px;
+margin:auto;
+}
+
+/* ================= SEARCH ================= */
+
+.search-section{
+
+padding:40px;
+
+text-align:center;
+
+background:white;
+
+}
+
+.search-box{
+
+width:70%;
+max-width:700px;
+
+padding:15px;
+
+border-radius:40px;
+
+border:2px solid #c89b6d;
+
+font-size:17px;
+
+outline:none;
+
+}
+
+/* ================= CATEGORY ================= */
+
+.category{
+
+display:flex;
+
+justify-content:center;
+
+gap:15px;
+
+flex-wrap:wrap;
+
+padding:20px;
+
+background:#f8f5f2;
+
+}
+
+.category button{
+
+padding:12px 24px;
+
+border:none;
+
+border-radius:30px;
+
+background:#2b1b12;
+
+color:white;
+
+cursor:pointer;
+
+transition:.3s;
+
+font-size:15px;
+
+}
+
+.category button:hover{
+
+background:#c89b6d;
+
+}
+
+/* ================= MENU ================= */
+
+.menu{
+
+padding:50px;
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+gap:30px;
+
+}
+
+.card{
+
+background:white;
+
+border-radius:15px;
+
+overflow:hidden;
+
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+transition:.3s;
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+
+}
+
+.card img{
+
+width:100%;
+
+height:220px;
+
+object-fit:cover;
+
+}
+
+.card-content{
+
+padding:20px;
+
+}
+
+.card-content h3{
+
+color:#2b1b12;
+
+margin-bottom:10px;
+
+}
+
+.card-content p{
+
+color:#666;
+
+margin-bottom:12px;
+
+}
+
+.price{
+
+font-size:22px;
+
+font-weight:bold;
+
+color:#c89b6d;
+
+margin-bottom:15px;
+
+}
+
+.order-btn{
+
+width:100%;
+
+padding:12px;
+
+border:none;
+
+background:#2b1b12;
+
+color:white;
+
+cursor:pointer;
+
+border-radius:8px;
+
+font-size:16px;
+
+transition:.3s;
+
+}
+
+.order-btn:hover{
+
+background:#c89b6d;
+
+}
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="navbar">
+
+<div class="logo">
+<i class="fa-solid fa-mug-hot"></i>
+ Brew&Desk
+</div>
+
+<ul>
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="menu.html">Menu</a></li>
+
+<li><a href="about.html">About Us</a></li>
+
+<li><a href="reservation.html">Reservation</a></li>
+
+<li><a href="contact.html">Contact</a></li>
+
+</ul>
+
+<div class="nav-buttons">
+
+<a href="login.html" class="login-btn">Login</a>
+
+<a href="register.html" class="register-btn">Register</a>
+
+</div>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div>
+
+<h1>Our Menu</h1>
+
+<p>
+Freshly brewed coffee, delicious meals, refreshing beverages,
+and delightful desserts—all prepared with love.
+</p>
+
+</div>
+
+</section>
+
+<section class="search-section">
+
+<input
+type="text"
+id="search"
+class="search-box"
+placeholder="Search your favourite food..."
+>
+
+</section>
+
+<section class="category">
+
+<button onclick="filterMenu('all')">All</button>
+
+<button onclick="filterMenu('iced')">Iced</button>
+
+<button onclick="filterMenu('hot')">Hot</button>
+
+<button onclick="filterMenu('toast')">Toast</button>
+
+<button onclick="filterMenu('dessert')">Dessert</button>
+
+</section>
+
+<section class="menu">
+
+<!-- Iced -->
+
+<div class="card iced">
+
+<img src="D:\web_images\iced_1.jpg">
+
+<div class="card-content">
+
+<h3>Espresso</h3>
+
+<p>Rich, bold, and perfectly brewed,our espresso delivers an intense coffee experience in every sip</p>
+
+<div class="price">₹180</div>
+
+<button class="order-btn" onclick="addOrder('Espresso')">
+
+Add to Pre-Order
+
+</button>
+
+</div>
+
+</div>
+<div class="card iced">
+
+<img src="D:\web_images\iced_2.jpg">
+
+<div class="card-content">
+
+<h3>Glace</h3>
+
+<p>A refreshing iced coffee with smooth texture and creamy flavor.</p>
+
+<div class="price">₹170</div>
+
+<button class="order-btn" onclick="addOrder('Glace')">
+
+Add to Pre-Order
+
+</button>
+
+</div>
+
+</div>
+<div class="card iced">
+
+<img src="D:\web_images\iced_3.jpg">
+
+<div class="card-content">
+
+<h3>Latte</h3>
+
+<p>Creamy milk coffee with smooth texture.</p>
+
+<div class="price">₹200</div>
+
+<button class="order-btn" onclick="addOrder('Latte')">
+
+Add to Pre-Order
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="card iced">
+
+<img src="D:\web_images\iced_4.jpg">
+
+<div class="card-content">
+
+<h3>Cocoa</h3>
+
+<p>A delicious chocolate drink with a rich and velvety flavor.</p>
+
+<div class="price">₹190</div>
+
+<button class="order-btn" onclick="addOrder('Cocoa')">
+
+Add to Pre-Order
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="card iced">
+
+<img src="D:\web_images\iced_5.jpg">
+
+<div class="card-content">
+
+<h3>Mocha</h3>
+
+<p>A creamy mocha delight with the perfect balance of coffee and chocolate.</p>
+
+<div class="price">₹200</div>
+
+<button class="order-btn" onclick="addOrder('Mocha')">
+
+Add to Pre-Order
+
+</button>
+
+</div>
+
+</div>
+
+<!-- hot -->
+
+<div class="card hot">
+
+<img src="D:\web_images\hot_1.jpg">
+
+<div class="card-content">
+
+<h3>Chocolate</h3>
+
+<p>Rich hot chocolate with a creamy texture and delightful cocoa flavor.</p>
+
+<div class="price">₹210</div>
+
+<button class="order-btn" onclick="addOrder('Chocolate')">
+Add to Pre-Order
+</button>
+
+</div>
+
+</div>
+
+<div class="card hot">
+
+<img src="D:\web_images\hot_2.jpg">
+
+<div class="card-content">
+
+<h3>Flat White</h3>
+
+<p>Rich espresso blended with velvety steamed milk for a smooth finish.</p>
+
+<div class="price">₹140</div>
+
+<button class="order-btn" onclick="addOrder('Flat White')">
+Add to Pre-Order
+</button>
+
+</div>
+
+</div>
+
+<div class="card hot">
+
+<img src="D:\web_images\hot_3.jpg">
+
+<div class="card-content">
+
+<h3>Cappuccino</h3>
+
+<p>A classic blend of rich espresso, steamed milk, and creamy foam.</p>
+
+<div class="price">₹180</div>
+
+<button class="order-btn" onclick="addOrder('Cappuccino')">
+Add to Pre-Order
+</button>
+
+</div>
+
+</div>
+
+<div class="card hot">
+
+<img src="D:\web_images\hot_4.jpg">
+
+<div class="card-content">
+
+<h3>Cafe latte</h3>
+
+<p>Perfectly balanced espresso and steamed milk with a smooth, creamy finish.</p>
+
+<div class="price">₹190</div>
+
+<button class="order-btn" onclick="addOrder('Cafe latte')">
+Add to Pre-Order
+</button>
+
+</div>
+
+</div>
+
+<div class="card hot">
+
+<img src="D:\web_images\hot_5.jpg">
+
+<div class="card-content">
+
+<h3>Milk Tea</h3>
+
+<p>Freshly brewed milk tea with a smooth, rich, and creamy taste.</p>
+
+<div class="price">₹80</div>
+
+<button class="order-btn" onclick="addOrder('Milk Tea')">
+Add to Pre-Order
+</button>
+
+</div>
+
+</div>
+
+
+<!-- Toast -->
+
+<div class="card toast">
+
+<img src="D:\web_images\toast_1.jpg">
+
+<div class="card-content">
+
+<h3>Cheese Toast</h3>
+
+<p>Crispy toasted bread topped with rich and creamy melted cheese.</p>
+
+<div class="price">₹150</div>
+
+<button class="order-btn" onclick="addOrder('Cheese Toast')">
+Add to Pre-Order
+</button>
+
+</div>
+
+</div>
+
+<div class="card toast">
+
+<img src="D:\web_images\toast_2.jpg">
+
+<div class="card-content">
+
+<h3>Avocados</h3>
+
+<p>Loaded with fresh vegetables and cheese.</p>
+
+<div class="price">₹220</div>
+
+<button class="order-btn" onclick="addOrder('Avocados')">
+Add to Pre-Order
+</button>
+
+</div>
+
+</div>
+
+<div class="card toast">
+
+<img src="D:\web_images\toast_3.jpg">
+
+<div class="card-content">
+
+<h3>Ham Toast</h3>
+
+<p>Crispy toasted bread topped with rich and creamy melted cheese.</p>
+
+<div class="price">₹210</div>
+
+<button class="order-btn" onclick="addOrder('Ham Toast')">
+Add to Pre-Order
+</button>
+
+</div>
+
+</div>
+
+<div class="card toast">
+
+<img src="D:\web_images\toast_4.jpg">
+
+<div class="card-content">
+
+<h3>Strawberry</h3>
+
+<p>Crispy toasted bread topped with fresh strawberries and a sweet, creamy spread.</p>
+
+<div class="price">₹200</div>
+
+<button class="order-btn" onclick="addOrder('Strawberry')">
+Add to Pre-Order
+</button>
+
+</div>
+
+</div>
+
+<!-- Desserts -->
+
+<div class="card dessert">
+
+<img src="D:\web_images\dessert_1.jpg">
+
+<div class="card-content">
+
+<h3>Cakes</h3>
+
+<p>Rich chocolate layered cake.</p>
+
+<div class="price">₹180</div>
+
+<button class="order-btn" onclick="addOrder('Cake')">
+Add to Pre-Order
+</button>
+
+</div>
+
+</div>
+
+<div class="card dessert">
+
+<img src="D:\web_images\dessert_2.jpg">
+
+<div class="card-content">
+
+<h3>IceCream</h3>
+
+<p>Enjoy a scoop of smooth, creamy ice cream made with premium ingredients and irresistible flavors.</p>
+
+<div class="price">₹200</div>
+
+<button class="order-btn" onclick="addOrder('IceCream')">
+Add to Pre-Order
+</button>
+
+</div>
+
+</div>
+
+<div class="card dessert">
+
+<img src="D:\web_images\dessert_3.jpg">
+
+<div class="card-content">
+
+<h3>CupCake</h3>
+
+<p>Enjoy our freshly baked cupcakes, perfectly moist and finished with rich, delicious frosting.</p>
+
+<div class="price">₹120</div>
+
+<button class="order-btn" onclick="addOrder('CupCake')">
+Add to Pre-Order
+</button>
+
+</div>
+
+</div>
+
+<div class="card dessert">
+
+<img src="D:\web_images\dessert_4.jpg">
+
+<div class="card-content">
+
+<h3>Mochi</h3>
+
+<p>Soft, chewy, and delicately sweet, our mochi is a delightful Japanese treat with a delicious filling.</p>
+
+<div class="price">₹170</div>
+
+<button class="order-btn" onclick="addOrder('Mochi')">
+Add to Pre-Order
+</button>
+
+</div>
+
+</div>
+
+<div class="card dessert">
+
+<img src="D:\web_images\dessert_5.jpg">
+
+<div class="card-content">
+
+<h3>Macaron</h3>
+
+<p>Crisp on the outside, soft on the inside, our macarons are filled with rich, creamy flavors.</p>
+
+<div class="price">₹140</div>
+
+<button class="order-btn" onclick="addOrder('Macaron')">
+Add to Pre-Order
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<div class="footer-content">
+
+<p>&copy; 2026 Brew&Desk. All Rights Reserved.</p>
+
+<div class="social-icons">
+
+<a href="#"><i class="fab fa-facebook-f"></i></a>
+
+<a href="#"><i class="fab fa-instagram"></i></a>
+
+<a href="#"><i class="fab fa-twitter"></i></a>
+
+</div>
+
+</div>
+
+</footer>
+
+<style>
+
+/* ================= FOOTER ================= */
+
+footer{
+
+background:#2b1b12;
+
+padding:25px 40px;
+
+color:white;
+
+}
+
+.footer-content{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+flex-wrap:wrap;
+
+gap:20px;
+
+}
+
+.social-icons a{
+
+color:white;
+
+font-size:20px;
+
+margin-right:15px;
+
+transition:.3s;
+
+}
+
+.social-icons a:hover{
+
+color:#c89b6d;
+
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+
+.navbar{
+
+flex-direction:column;
+
+gap:15px;
+
+}
+
+.navbar ul{
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+}
+
+.hero h1{
+
+font-size:40px;
+
+}
+
+.search-box{
+
+width:95%;
+
+}
+
+.menu{
+
+grid-template-columns:1fr;
+
+padding:20px;
+
+}
+
+.footer-content{
+
+flex-direction:column;
+
+text-align:center;
+
+}
+
+}
+
+</style>
+
+
+<script>
+
+// Add to Pre-Order
+
+function addOrder(item){
+
+alert(item + " has been added to your Pre-Order!");
+
+}
+
+
+// Category Filter
+
+function filterMenu(category){
+
+const cards=document.querySelectorAll(".card");
+
+cards.forEach(card=>{
+
+if(category==="all"){
+
+card.style.display="block";
+
+}
+
+else{
+
+if(card.classList.contains(category)){
+
+card.style.display="block";
+
+}
+
+else{
+
+card.style.display="none";
+
+}
+
+}
+
+});
+
+}
+
+
+// Search Function
+
+const search=document.getElementById("search");
+
+search.addEventListener("keyup",function(){
+
+let value=this.value.toLowerCase();
+
+const cards=document.querySelectorAll(".card");
+
+cards.forEach(card=>{
+
+let title=card.querySelector("h3").textContent.toLowerCase();
+
+if(title.includes(value)){
+
+card.style.display="block";
+
+}
+
+else{
+
+card.style.display="none";
+
+}
+
+});
+
+});
+
+
+// Console Message
+
+window.onload=function(){
+
+console.log("Welcome to Brew&Desk Menu Page");
+
+}
+
+</script>
+
+</body>
+
+</html>

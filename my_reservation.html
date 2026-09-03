@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Brew&Desk | My Reservations</title>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f8f5f2;
+            color: #333;
+        }
+
+        /* ============== NAVBAR ============== */
+
+        header {
+            background: #2b1b12;
+            padding: 15px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .navbar ul li a:hover {
+            color: #c89b6d;
+        }
+
+        .nav-buttons a {
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        .login-btn {
+            background: white;
+            color: #2b1b12;
+        }
+
+        .register-btn {
+            background: #c89b6d;
+            color: white;
+        }
+
+        /* ============== HERO SECTION ============== */
+
+        .hero {
+            height: 35vh;
+
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.6),
+                rgba(0, 0, 0, 0.6)),
+                url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1600");
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 18px;
+        }
+
+        /* ============== RESERVATIONS ============== */
+
+        .container {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .container h2 {
+            text-align: center;
+            color: #2b1b12;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+
+            box-shadow:
+                0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .detail-box {
+            background: #f8f5f2;
+            padding: 18px;
+            border-radius: 10px;
+        }
+
+        .detail-box h4 {
+            margin-bottom: 8px;
+            color: #2b1b12;
+        }
+
+        .detail-box p {
+            color: #666;
+        }
+
+        /* ============== STATUS ============== */
+
+        .status {
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        .confirmed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .cancelled {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* ============== BUTTONS ============== */
+
+        .buttons {
+            margin-top: 25px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .buttons button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .view-btn {
+            background: #2b1b12;
+            color: white;
+        }
+
+        .cancel-btn {
+    background: white;
+    color: #b22222;
+    border: 1px solid #b22222 !important;
+    padding: 10px 18px !important;
+    border-radius: 6px !important;
+    font-size: 14px !important;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: 0.3s;
+}
+
+.cancel-btn:hover {
+    background: #b22222;
+    color: white;
+}
+        
+
+        .buttons button:hover {
+            opacity: 0.9;
+        }
+
+        /* ============== FOOTER ============== */
+
+        footer {
+            background: #2b1b12;
+            color: white;
+            padding: 20px 40px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .social-icons a {
+            color: white;
+            margin: 0 10px;
+            font-size: 20px;
+        }
+
+        .social-icons a:hover {
+            color: #c89b6d;
+        }
+
+        .admin-login a {
+            text-decoration: none;
+            background: #c89b6d;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        /* ============== RESPONSIVE ============== */
+
+        @media (max-width: 768px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .navbar ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .details {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- ============== NAVBAR ============== -->
+
+    <header>
+
+        <div class="navbar">
+
+            <div class="logo">
+                <i class="fa-solid fa-mug-hot"></i>
+                Brew&Desk
+            </div>
+
+            <ul>
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+
+                <li>
+                    <a href="menu.html">Menu</a>
+                </li>
+
+                <li>
+                    <a href="reservation.html">Reservation</a>
+                </li>
+
+                <li>
+                    <a href="contact.html">Contact</a>
+                </li>
+            </ul>
+
+            <div class="nav-buttons">
+
+                <a href="profile.html" class="login-btn">
+                    Profile
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ============== HERO SECTION ============== -->
+
+    <section class="hero">
+
+        <div>
+
+            <h1>My Reservations</h1>
+
+            <p>
+                View and manage all your table reservations.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ============== RESERVATIONS ============== -->
+
+    <div class="container">
+
+        <!-- RESERVATIONS EMPTY STATE -->
+
+<h2>My Reservations</h2>
+
+<div class="card" style="text-align:center; padding:50px 25px;">
+
+    <i class="fa-solid fa-calendar-xmark"
+       style="font-size:40px; color:#c89b6d; margin-bottom:15px;">
+    </i>
+
+    <h3 style="color:#2b1b12; margin-bottom:10px;">
+        No Reservations Yet
+    </h3>
+
+    <p style="color:#777;">
+        Your table reservations will appear here after you make a reservation.
+    </p>
+
+</div>
+
+    </div>
+
+
+    <!-- ============== FOOTER ============== -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <p>
+                &copy; 2026 Brew&Desk.
+                All Rights Reserved.
+            </p>
+
+
+            <div class="social-icons">
+
+                <a href="#">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+
+                <a href="#">
+                    <i class="fab fa-instagram"></i>
+                </a>
+
+                <a href="#">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+
+            </div>
+
+
+            <div class="admin-login">
+
+                <a href="admin/login.php">
+                    Admin Login
+                </a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ============== JAVASCRIPT ============== -->
+
+    <script>
+
+        function cancelReservation() {
+
+            let answer = confirm(
+                "Are you sure you want to cancel your reservation?"
+            );
+
+            if (answer) {
+
+                alert(
+                    "Reservation Cancelled Successfully."
+                );
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
