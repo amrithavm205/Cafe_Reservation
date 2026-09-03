@@ -1,0 +1,5 @@
+Amritha V Madhu:
+Contributed to the frontend development of the Brew&Desk Café Reservation and Food Pre-Ordering System by designing and developing the complete customer-side interface, including customer registration, login, home, menu, reservation, ordering, profile, and related pages. Also handled the collection and organization of images and visual assets used throughout the website. Will also contribute to the backend development, including database integration, customer functionality, reservation management, and other required system operations.
+
+Ardra M Pradeep:
+Contributed to the frontend development by designing and developing the complete admin-side interface, including the admin login, dashboard, reservation management, order management, customer management, menu management, reports, and admin profile pages. Will also contribute to the backend development, including admin functionality, database integration, order and menu management, reporting, and other required system operations.
