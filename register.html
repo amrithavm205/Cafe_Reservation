@@ -26,369 +26,220 @@ background:#f8f5f2;
 color:#333;
 }
 
-/* ================= NAVBAR ================= */
-
 header{
-
 background:#2b1b12;
-
 padding:15px 40px;
-
 position:sticky;
-
 top:0;
-
 z-index:1000;
-
 }
 
 .navbar{
-
 display:flex;
-
 justify-content:space-between;
-
 align-items:center;
-
 }
 
 .logo{
-
 font-size:25px;
-
 font-weight:bold;
-
 color:white;
-
 }
 
 .navbar ul{
-
 display:flex;
-
 list-style:none;
-
 gap:20px;
-
 }
 
 .navbar ul li a{
-
 text-decoration:none;
-
 color:white;
-
 transition:.3s;
-
 }
 
 .navbar ul li a:hover{
-
 color:#c89b6d;
-
 }
 
 .nav-buttons a{
-
 text-decoration:none;
-
 padding:8px 15px;
-
 border-radius:5px;
-
 margin-left:10px;
-
 font-weight:bold;
-
 }
 
 .login-btn{
-
 background:white;
-
 color:#2b1b12;
-
 }
 
 .register-btn{
-
 background:#c89b6d;
-
 color:white;
-
 }
 
-/* ================= HERO ================= */
-
 .hero{
-
 height:35vh;
 
 background:
-
 linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
-
 url("https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=1600");
 
 background-size:cover;
-
 background-position:center;
 
 display:flex;
-
 justify-content:center;
-
 align-items:center;
-
 text-align:center;
-
 color:white;
-
 }
 
 .hero h1{
-
 font-size:50px;
-
 margin-bottom:10px;
-
 }
 
-/* ================= REGISTER FORM ================= */
-
 .register-container{
-
 max-width:650px;
-
 margin:50px auto;
-
 background:white;
-
 padding:40px;
-
 border-radius:15px;
-
 box-shadow:0 10px 25px rgba(0,0,0,.1);
-
 }
 
 .register-container h2{
-
 text-align:center;
-
 margin-bottom:30px;
-
 color:#2b1b12;
-
 }
 
 .form-group{
-
 margin-bottom:20px;
-
 }
 
 label{
-
 display:block;
-
 margin-bottom:8px;
-
 font-weight:bold;
-
 }
 
 .input-box{
-
 position:relative;
-
 }
 
 .input-box i{
-
 position:absolute;
-
 left:15px;
-
 top:15px;
-
 color:#888;
-
 }
 
 input,
 select{
-
 width:100%;
-
 padding:12px 12px 12px 45px;
-
 border:1px solid #ccc;
-
 border-radius:8px;
-
 font-size:16px;
-
 outline:none;
-
 }
 
 input:focus,
 select:focus{
-
 border-color:#c89b6d;
-
 }
 
 .row{
-
 display:grid;
-
 grid-template-columns:1fr 1fr;
-
 gap:20px;
-
 }
 
 .register-button{
-
 width:100%;
-
 padding:14px;
-
 background:#2b1b12;
-
 color:white;
-
 border:none;
-
 border-radius:8px;
-
 font-size:17px;
-
 cursor:pointer;
-
 transition:.3s;
-
 }
 
 .register-button:hover{
-
 background:#c89b6d;
-
 }
 
-/* ================= LOGIN LINK ================= */
-
 .login-link{
-
 text-align:center;
-
 margin-top:25px;
-
 }
 
 .login-link a{
-
 text-decoration:none;
-
 color:#2b1b12;
-
 font-weight:bold;
-
 }
 
 .login-link a:hover{
-
 color:#c89b6d;
-
 }
 
-/* ================= FOOTER ================= */
-
 footer{
-
 background:#2b1b12;
-
 color:white;
-
 padding:20px 40px;
-
 margin-top:50px;
-
 }
 
 .footer-content{
-
 display:flex;
-
 justify-content:space-between;
-
 align-items:center;
-
 flex-wrap:wrap;
-
 }
 
 .social-icons a{
-
 color:white;
-
 margin:0 10px;
-
 font-size:20px;
-
 transition:.3s;
-
 }
 
 .social-icons a:hover{
-
 color:#c89b6d;
-
 }
-
 
 @media(max-width:768px){
 
 .navbar{
-
 flex-direction:column;
-
 gap:15px;
-
 }
 
 .navbar ul{
-
 flex-wrap:wrap;
-
 justify-content:center;
-
 }
 
 .row{
-
 grid-template-columns:1fr;
-
 }
 
 .register-container{
-
 width:90%;
-
 padding:25px;
-
 }
 
 .footer-content{
-
 flex-direction:column;
-
 gap:20px;
-
 text-align:center;
-
 }
 
 }
@@ -453,7 +304,7 @@ text-align:center;
 
 <h2>Customer Registration</h2>
 
-<form id="registerForm">
+<form id="registerForm" action="register.php" method="POST">
 
 <div class="row">
 
@@ -467,6 +318,7 @@ text-align:center;
 
 <input
 type="text"
+name="name"
 placeholder="Enter your full name"
 required>
 
@@ -484,6 +336,7 @@ required>
 
 <input
 type="tel"
+name="phone"
 placeholder="Enter your mobile number"
 required>
 
@@ -503,13 +356,13 @@ required>
 
 <input
 type="email"
+name="email"
 placeholder="Enter your email"
 required>
 
 </div>
 
 </div>
-
 
 <button type="submit" class="register-button">
 
@@ -537,8 +390,6 @@ Login Here
 
 </div>
 
-<!-- ================= FOOTER ================= -->
-
 <footer>
 
 <div class="footer-content">
@@ -561,21 +412,7 @@ Login Here
 
 </footer>
 
-<!-- ================= JAVASCRIPT ================= -->
-
 <script>
-
-document.getElementById("registerForm").addEventListener("submit", function(e){
-
-e.preventDefault();
-
-alert("Registration Successful!");
-
-window.location.href="login.html";
-
-});
-
-// Console Message
 
 window.onload=function(){
 

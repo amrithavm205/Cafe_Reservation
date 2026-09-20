@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pre-Order - Brew&Desk</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f8f5f2;
+            color: #2b1b12;
+        }
+
+        nav {
+            background: #2b1b12;
+            padding: 18px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #c89b6d;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 50px auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .cart-item {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .item-name {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .item-price {
+            color: #777;
+            margin-top: 5px;
+        }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .quantity button {
+            width: 30px;
+            height: 30px;
+            border: none;
+            border-radius: 50%;
+            background: #2b1b12;
+            color: white;
+            cursor: pointer;
+        }
+
+        .remove {
+            background: none !important;
+            border: none;
+            color: #a33 !important;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+
+        .total-box {
+            background: white;
+            padding: 25px;
+            margin-top: 25px;
+            border-radius: 12px;
+            text-align: right;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .total {
+            font-size: 24px;
+            font-weight: bold;
+            color: #c89b6d;
+        }
+
+        /* PAYMENT SECTION */
+
+        .payment-box {
+            background: white;
+            padding: 25px;
+            margin-top: 20px;
+            border-radius: 12px;
+            text-align: left;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .payment-box h3 {
+            margin-bottom: 15px;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .payment-option:hover {
+            border-color: #c89b6d;
+        }
+
+        .payment-option input {
+            accent-color: #2b1b12;
+        }
+
+        .confirm-btn {
+            margin-top: 20px;
+            padding: 13px 25px;
+            border: none;
+            border-radius: 8px;
+            background: #2b1b12;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .confirm-btn:hover {
+            background: #c89b6d;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 50px;
+            background: white;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">Brew&Desk</div>
+    <a href="menu.html">← Back to Menu</a>
+</nav>
+
+<div class="container">
+
+    <h1>Your Pre-Order 🛒</h1>
+
+    <div id="cartContainer"></div>
+
+    <div class="total-box" id="totalBox" style="display:none;">
+
+        <p>Total Amount</p>
+
+        <div class="total" id="totalAmount">₹0</div>
+
+        <!-- PAYMENT METHOD -->
+
+        <div class="payment-box">
+
+            <h3>Choose Payment Method</h3>
+
+            <label class="payment-option">
+                <input type="radio"
+                       name="payment_method"
+                       value="UPI">
+                📱 UPI
+            </label>
+
+            <label class="payment-option">
+                <input type="radio"
+                       name="payment_method"
+                       value="Cash">
+                💵 Cash
+            </label>
+
+        </div>
+
+        <button class="confirm-btn" onclick="confirmOrder()">
+            Confirm Pre-Order
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+let cart = JSON.parse(localStorage.getItem("preOrderCart")) || [];
+
+const prices = {
+    "Espresso": 180,
+    "Glace": 170,
+    "Latte": 200,
+    "Cocoa": 190,
+    "Mocha": 200,
+
+    "Chocolate": 210,
+    "Flat White": 140,
+    "Cappuccino": 180,
+    "Cafe latte": 190,
+    "Milk Tea": 80,
+
+    "Cheese Toast": 150,
+    "Avocados": 220,
+    "Ham Toast": 210,
+    "Strawberry": 200,
+
+    "Cakes": 180,
+    "IceCream": 200,
+    "CupCake": 120,
+    "Mochi": 170,
+    "Macaron": 140,
+    "Brownie": 160
+};
+
+
+function displayCart() {
+
+    let container = document.getElementById("cartContainer");
+
+    if (cart.length === 0) {
+
+        container.innerHTML =
+            '<div class="empty">Your Pre-Order is empty ☕</div>';
+
+        document.getElementById("totalBox").style.display = "none";
+
+        return;
+    }
+
+    container.innerHTML = "";
+
+    cart.forEach((item, index) => {
+
+        let price = prices[item.name];
+        let itemTotal = price * item.quantity;
+
+        container.innerHTML += `
+            <div class="cart-item">
+
+                <div>
+                    <div class="item-name">${item.name}</div>
+
+                    <div class="item-price">
+                        ₹${price} × ${item.quantity} = ₹${itemTotal}
+                    </div>
+                </div>
+
+                <div class="quantity">
+
+                    <button onclick="decrease(${index})">
+                        −
+                    </button>
+
+                    <span>${item.quantity}</span>
+
+                    <button onclick="increase(${index})">
+                        +
+                    </button>
+
+                    <button class="remove"
+                            onclick="removeItem(${index})">
+                        Remove
+                    </button>
+
+                </div>
+
+            </div>
+        `;
+    });
+
+    calculateTotal();
+
+    document.getElementById("totalBox").style.display = "block";
+}
+
+
+function increase(index) {
+
+    cart[index].quantity++;
+
+    saveCart();
+}
+
+
+function decrease(index) {
+
+    if (cart[index].quantity > 1) {
+
+        cart[index].quantity--;
+
+    } else {
+
+        cart.splice(index, 1);
+    }
+
+    saveCart();
+}
+
+
+function removeItem(index) {
+
+    cart.splice(index, 1);
+
+    saveCart();
+}
+
+
+function saveCart() {
+
+    localStorage.setItem(
+        "preOrderCart",
+        JSON.stringify(cart)
+    );
+
+    displayCart();
+}
+
+
+function calculateTotal() {
+
+    let total = 0;
+
+    cart.forEach(item => {
+
+        total += prices[item.name] * item.quantity;
+
+    });
+
+    document.getElementById("totalAmount").innerText =
+        "₹" + total;
+}
+
+
+// CONFIRM ORDER
+
+function confirmOrder() {
+
+    if (cart.length === 0) {
+
+        alert("Your Pre-Order is empty!");
+
+        return;
+    }
+
+    // Check payment method
+
+    let payment =
+        document.querySelector(
+            'input[name="payment_method"]:checked'
+        );
+
+    if (!payment) {
+
+        alert("Please select a payment method.");
+
+        return;
+    }
+
+    fetch("preorder.php", {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+
+            cart: cart,
+
+            payment_method: payment.value
+
+        })
+
+    })
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        if (data.success) {
+
+            alert(
+                "Order Confirmed Successfully! 🎉\n\n" +
+                "Order ID: " + data.order_id + "\n" +
+                "Total Amount: ₹" + data.total + "\n" +
+                "Payment: " + payment.value
+            );
+
+            localStorage.removeItem("preOrderCart");
+
+            cart = [];
+
+            displayCart();
+
+            window.location.href = "index.html";
+
+        } else {
+
+            alert(data.message);
+
+        }
+
+    })
+
+    .catch(error => {
+
+        console.error(error);
+
+        alert(
+            "Something went wrong while confirming your order.\n" +
+            "Please try again."
+        );
+
+    });
+}
+
+
+displayCart();
+
+</script>
+
+</body>
+</html>

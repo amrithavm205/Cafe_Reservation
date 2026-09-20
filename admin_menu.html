@@ -2021,219 +2021,597 @@ Add Menu Item
 
 </div>
 
-
 <script>
+
+/* ================= MENU DATA ================= */
+
+let allMenuItems = [];
+
+
+/* ================= LOAD MENU ================= */
+
+async function loadMenu() {
+
+    try {
+
+        const response =
+            await fetch("admin_menu.php");
+
+
+        const data =
+            await response.json();
+
+
+        if (!data.success) {
+
+            alert(data.message);
+
+            return;
+
+        }
+
+
+        allMenuItems =
+            data.menu;
+
+
+        // Update summary cards
+
+        document.querySelector(
+            ".summary-card:nth-child(1) h3"
+        ).textContent =
+            data.summary.total_items;
+
+
+        document.querySelector(
+            ".summary-card:nth-child(2) h3"
+        ).textContent =
+            data.summary.available_items;
+
+
+        document.querySelector(
+            ".summary-card:nth-child(3) h3"
+        ).textContent =
+            data.summary.unavailable_items;
+
+
+        displayMenu(allMenuItems);
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Failed to load menu items."
+        );
+
+    }
+
+}
+
+
+/* ================= DISPLAY MENU ================= */
+
+function displayMenu(items) {
+
+    const tbody =
+        document.querySelector(
+            "#menuTable tbody"
+        );
+
+
+    tbody.innerHTML = "";
+
+
+    if (items.length === 0) {
+
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="6"
+                    style="text-align:center;
+                    padding:30px;
+                    color:#777;">
+                    No menu items found.
+                </td>
+            </tr>
+        `;
+
+        return;
+
+    }
+
+
+    items.forEach(function(item) {
+
+        const row =
+            document.createElement("tr");
+
+
+        const category =
+            item.category.charAt(0).toUpperCase()
+            +
+            item.category.slice(1);
+
+
+        row.innerHTML = `
+
+            <td>
+
+                <div
+                    style="
+                    width:65px;
+                    height:55px;
+                    background:#f0e3d5;
+                    border-radius:7px;
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                    color:#2b1b12;
+                    font-size:22px;
+                    "
+                >
+
+                    <i class="fa-solid fa-mug-hot"></i>
+
+                </div>
+
+            </td>
+
+
+            <td>
+
+                <strong>
+                    ${escapeHTML(item.item_name)}
+                </strong>
+
+            </td>
+
+
+            <td>
+
+                ${category}
+
+            </td>
+
+
+            <td>
+
+                ₹${Number(item.price).toFixed(0)}
+
+            </td>
+
+
+            <td>
+
+                <span class="available">
+                    Available
+                </span>
+
+            </td>
+
+
+            <td>
+
+                <button
+                    class="action-btn edit-btn"
+                    onclick="editItem(
+                        ${item.item_id},
+                        '${escapeQuotes(item.item_name)}',
+                        '${escapeQuotes(item.category)}',
+                        '${item.price}'
+                    )"
+                >
+
+                    <i class="fa-solid fa-pen"></i>
+                    Edit
+
+                </button>
+
+
+                <button
+                    class="action-btn toggle-btn"
+                    onclick="toggleItem(this)"
+                >
+
+                    Disable
+
+                </button>
+
+
+                <button
+                    class="action-btn delete-btn"
+                    onclick="deleteItem(
+                        ${item.item_id},
+                        '${escapeQuotes(item.item_name)}'
+                    )"
+                >
+
+                    <i class="fa-solid fa-trash"></i>
+                    Delete
+
+                </button>
+
+            </td>
+
+        `;
+
+
+        tbody.appendChild(row);
+
+    });
+
+}
+
 
 /* ================= SEARCH ================= */
 
-document.getElementById("searchInput")
-.addEventListener("keyup",function(){
-
-let value =
-this.value.toLowerCase();
-
-let rows =
-document.querySelectorAll("#menuTable tbody tr");
-
-rows.forEach(function(row){
-
-let item =
-row.cells[1].textContent.toLowerCase();
-
-if(item.includes(value)){
-
-row.style.display="";
-
-}
-
-else{
-
-row.style.display="none";
-
-}
-
-});
-
-});
+document.getElementById(
+    "searchInput"
+).addEventListener(
+    "keyup",
+    applyFilters
+);
 
 
 /* ================= CATEGORY FILTER ================= */
 
-document.getElementById("categoryFilter")
-.addEventListener("change",function(){
+document.getElementById(
+    "categoryFilter"
+).addEventListener(
+    "change",
+    applyFilters
+);
 
-let selected =
-this.value.toLowerCase();
 
-let rows =
-document.querySelectorAll("#menuTable tbody tr");
+/* ================= FILTER ================= */
 
-rows.forEach(function(row){
+function applyFilters() {
 
-let category =
-row.cells[2].textContent.trim().toLowerCase();
+    const search =
+        document.getElementById(
+            "searchInput"
+        ).value.toLowerCase();
 
-if(selected === "all" ||
-category === selected){
 
-row.style.display="";
+    const category =
+        document.getElementById(
+            "categoryFilter"
+        ).value.toLowerCase();
+
+
+    const filtered =
+        allMenuItems.filter(function(item) {
+
+            const matchesSearch =
+                item.item_name
+                    .toLowerCase()
+                    .includes(search);
+
+
+            const matchesCategory =
+                category === "all"
+                ||
+                item.category.toLowerCase()
+                    === category;
+
+
+            return matchesSearch &&
+                   matchesCategory;
+
+        });
+
+
+    displayMenu(filtered);
 
 }
-
-else{
-
-row.style.display="none";
-
-}
-
-});
-
-});
 
 
 /* ================= ADD MODAL ================= */
 
-function openAddModal(){
+function openAddModal() {
 
-document.getElementById("addModal")
-.style.display="flex";
+    document.getElementById(
+        "addModal"
+    ).style.display = "flex";
 
 }
 
-function closeAddModal(){
 
-document.getElementById("addModal")
-.style.display="none";
+function closeAddModal() {
+
+    document.getElementById(
+        "addModal"
+    ).style.display = "none";
 
 }
 
 
 /* ================= ADD ITEM ================= */
 
-function addItem(event){
+async function addItem(event) {
 
-event.preventDefault();
+    event.preventDefault();
 
-let name =
-document.getElementById("itemName").value;
 
-let category =
-document.getElementById("itemCategory").value;
+    const name =
+        document.getElementById(
+            "itemName"
+        ).value.trim();
 
-let price =
-document.getElementById("itemPrice").value;
 
-alert(
-name +
-" has been added to the menu.\n\n" +
-"Category: " + category +
-"\nPrice: ₹" + price
-);
+    const category =
+        document.getElementById(
+            "itemCategory"
+        ).value;
 
-closeAddModal();
+
+    const price =
+        document.getElementById(
+            "itemPrice"
+        ).value;
+
+
+    const image =
+        document.getElementById(
+            "itemImage"
+        ).value;
+
+
+    try {
+
+        const response =
+            await fetch(
+                "add_menu_item.php",
+                {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        item_name: name,
+
+                        category: category,
+
+                        price: price,
+
+                        image: image
+
+                    })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (data.success) {
+
+            alert(
+                "Menu item added successfully!"
+            );
+
+
+            closeAddModal();
+
+
+            document.querySelector(
+                "#addModal form"
+            ).reset();
+
+
+            loadMenu();
+
+        }
+
+        else {
+
+            alert(data.message);
+
+        }
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Failed to add menu item."
+        );
+
+    }
 
 }
 
 
 /* ================= EDIT ITEM ================= */
 
-function editItem(item){
+function editItem(
+    id,
+    name,
+    category,
+    price
+) {
 
-alert(
-"Edit Menu Item: " + item +
-"\n\nThe edit feature will be connected to the database during backend integration."
-);
+    alert(
+        "Edit Menu Item\n\n" +
+        "Item: " + name +
+        "\nCategory: " + category +
+        "\nPrice: ₹" + price +
+        "\n\nEdit feature can be connected later."
+    );
 
 }
 
 
 /* ================= TOGGLE AVAILABILITY ================= */
 
-function toggleItem(button){
+function toggleItem(button) {
 
-let row =
-button.closest("tr");
+    const row =
+        button.closest("tr");
 
-let status =
-row.querySelector("td:nth-child(5) span");
 
-if(status.classList.contains("available")){
+    const status =
+        row.querySelector(
+            "td:nth-child(5) span"
+        );
 
-status.classList.remove("available");
 
-status.classList.add("unavailable");
+    if (
+        status.classList.contains(
+            "available"
+        )
+    ) {
 
-status.textContent="Unavailable";
+        status.classList.remove(
+            "available"
+        );
 
-button.textContent="Enable";
+        status.classList.add(
+            "unavailable"
+        );
 
-}
+        status.textContent =
+            "Unavailable";
 
-else{
 
-status.classList.remove("unavailable");
+        button.textContent =
+            "Enable";
 
-status.classList.add("available");
+    }
 
-status.textContent="Available";
+    else {
 
-button.textContent="Disable";
+        status.classList.remove(
+            "unavailable"
+        );
 
-}
+        status.classList.add(
+            "available"
+        );
+
+        status.textContent =
+            "Available";
+
+
+        button.textContent =
+            "Disable";
+
+    }
 
 }
 
 
 /* ================= DELETE ITEM ================= */
 
-function deleteItem(item){
+function deleteItem(
+    id,
+    name
+) {
 
-if(confirm(
-"Are you sure you want to delete " +
-item + "?"
-)){
+    if (
+        confirm(
+            "Are you sure you want to delete " +
+            name +
+            "?"
+        )
+    ) {
 
-alert(
-item +
-" has been deleted.\n\nDatabase deletion will be connected during backend integration."
-);
+        alert(
+            "Delete feature can be connected later."
+        );
 
-}
+    }
 
 }
 
 
 /* ================= LOGOUT ================= */
 
-function logoutAdmin(){
+function logoutAdmin() {
 
-let confirmLogout =
-confirm("Are you sure you want to logout?");
+    const confirmLogout =
+        confirm(
+            "Are you sure you want to logout?"
+        );
 
-if(confirmLogout){
 
-alert("You have been logged out successfully.");
+    if (confirmLogout) {
 
-return true;
+        alert(
+            "You have been logged out successfully."
+        );
+
+        return true;
+
+    }
+
+
+    return false;
 
 }
 
-return false;
+
+/* ================= CLOSE MODAL OUTSIDE ================= */
+
+window.onclick = function(event) {
+
+    const modal =
+        document.getElementById(
+            "addModal"
+        );
+
+
+    if (event.target === modal) {
+
+        closeAddModal();
+
+    }
+
+};
+
+
+/* ================= ESCAPE ================= */
+
+function escapeQuotes(value) {
+
+    return String(value)
+        .replace(/\\/g, "\\\\")
+        .replace(/'/g, "\\'");
 
 }
 
 
-/* ================= CONSOLE ================= */
+function escapeHTML(value) {
 
-window.onload=function(){
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
-console.log(
-"Welcome to Brew&Desk Menu Management"
-);
+}
+
+
+/* ================= START ================= */
+
+window.onload = function() {
+
+    loadMenu();
 
 };
 
 </script>
+
 
 </body>
 

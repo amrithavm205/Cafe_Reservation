@@ -435,10 +435,12 @@ Back to Home
 </div>
 
 
-<form id="adminLoginForm">
+<form id="adminLoginForm"
+      action="admin_login.php"
+      method="POST">
 
 
-<!-- Username -->
+<!-- Admin Email -->
 
 <div class="form-group">
 
@@ -451,6 +453,7 @@ Back to Home
 <input
 type="email"
 id="adminEmail"
+name="email"
 placeholder="Enter admin email"
 required>
 
@@ -472,6 +475,7 @@ required>
 <input
 type="password"
 id="adminPassword"
+name="password"
 placeholder="Enter password"
 required>
 
@@ -518,9 +522,6 @@ Forgot Password?
 
 </form>
 
-
-
-
 </div>
 
 </section>
@@ -558,8 +559,6 @@ if(passwordInput.type === "password"){
 
 passwordInput.type = "text";
 
-/* Open eye means password is visible */
-
 togglePassword.classList.remove("fa-eye");
 
 togglePassword.classList.add("fa-eye-slash");
@@ -570,49 +569,11 @@ else{
 
 passwordInput.type = "password";
 
-/* Closed eye means password is hidden */
-
 togglePassword.classList.remove("fa-eye-slash");
 
 togglePassword.classList.add("fa-eye");
 
 }
-
-});
-
-
-/* ================= LOGIN ================= */
-
-document.getElementById("adminLoginForm")
-.addEventListener("submit", function(e){
-
-e.preventDefault();
-
-const email =
-document.getElementById("adminEmail").value.trim();
-
-const password =
-document.getElementById("adminPassword").value;
-
-
-/*
-Temporary frontend login.
-
-We will replace this with PHP + MySQL
-when the backend is connected.
-*/
-
-if(email === "" || password === ""){
-
-alert("Please enter your email and password.");
-
-return;
-
-}
-
-alert("Admin Login Successful!");
-
-window.location.href="admin_dashboard.html";
 
 });
 

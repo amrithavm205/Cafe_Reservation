@@ -3,982 +3,565 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brew&Desk | Our Menu</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Menu - Brew&Desk</title>
 
     <style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
-}
-
-body{
-    background:#f8f5f2;
-    color:#333;
-}
-
-/* ================= NAVBAR ================= */
-
-header{
-    background:#2b1b12;
-    padding:15px 40px;
-    position:sticky;
-    top:0;
-    z-index:1000;
-}
-
-.navbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.logo{
-    color:#fff;
-    font-size:26px;
-    font-weight:bold;
-}
-
-.navbar ul{
-    display:flex;
-    list-style:none;
-    gap:25px;
-}
-
-.navbar ul li a{
-    text-decoration:none;
-    color:white;
-    transition:.3s;
-}
-
-.navbar ul li a:hover{
-    color:#c89b6d;
-}
-
-.nav-buttons a{
-    text-decoration:none;
-    padding:10px 18px;
-    border-radius:5px;
-    font-weight:bold;
-    margin-left:10px;
-}
-
-.login-btn{
-    background:white;
-    color:#2b1b12;
-}
-
-.register-btn{
-    background:#c89b6d;
-    color:white;
-}
-
-/* ================= HERO ================= */
-
-.hero{
-
-height:45vh;
-
-background:
-linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
-url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1600&auto=format&fit=crop");
-
-background-size:cover;
-background-position:center;
-
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-color:white;
-
-}
-
-.hero h1{
-font-size:55px;
-margin-bottom:15px;
-}
-
-.hero p{
-font-size:18px;
-max-width:700px;
-margin:auto;
-}
-
-/* ================= SEARCH ================= */
-
-.search-section{
-
-padding:40px;
-
-text-align:center;
-
-background:white;
-
-}
-
-.search-box{
-
-width:70%;
-max-width:700px;
-
-padding:15px;
-
-border-radius:40px;
-
-border:2px solid #c89b6d;
-
-font-size:17px;
-
-outline:none;
-
-}
-
-/* ================= CATEGORY ================= */
-
-.category{
-
-display:flex;
-
-justify-content:center;
-
-gap:15px;
-
-flex-wrap:wrap;
-
-padding:20px;
-
-background:#f8f5f2;
-
-}
-
-.category button{
-
-padding:12px 24px;
-
-border:none;
-
-border-radius:30px;
-
-background:#2b1b12;
-
-color:white;
-
-cursor:pointer;
-
-transition:.3s;
-
-font-size:15px;
-
-}
-
-.category button:hover{
-
-background:#c89b6d;
-
-}
-
-/* ================= MENU ================= */
-
-.menu{
-
-padding:50px;
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-
-gap:30px;
-
-}
-
-.card{
-
-background:white;
-
-border-radius:15px;
-
-overflow:hidden;
-
-box-shadow:0 5px 15px rgba(0,0,0,.15);
-
-transition:.3s;
-
-}
-
-.card:hover{
-
-transform:translateY(-8px);
-
-}
-
-.card img{
-
-width:100%;
-
-height:220px;
-
-object-fit:cover;
-
-}
-
-.card-content{
-
-padding:20px;
-
-}
-
-.card-content h3{
-
-color:#2b1b12;
-
-margin-bottom:10px;
-
-}
-
-.card-content p{
-
-color:#666;
-
-margin-bottom:12px;
-
-}
-
-.price{
-
-font-size:22px;
-
-font-weight:bold;
-
-color:#c89b6d;
-
-margin-bottom:15px;
-
-}
-
-.order-btn{
-
-width:100%;
-
-padding:12px;
-
-border:none;
-
-background:#2b1b12;
-
-color:white;
-
-cursor:pointer;
-
-border-radius:8px;
-
-font-size:16px;
-
-transition:.3s;
-
-}
-
-.order-btn:hover{
-
-background:#c89b6d;
-
-}
-
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f8f5f2;
+            color: #2b1b12;
+        }
+
+        /* NAVBAR */
+        nav {
+            background: #2b1b12;
+            padding: 18px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #c89b6d;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        nav ul li a:hover {
+            color: #c89b6d;
+        }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 55px 20px 35px;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #777;
+        }
+
+        /* SEARCH */
+        .search-box {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .search-box input {
+            width: 80%;
+            max-width: 500px;
+            padding: 13px 18px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+        }
+
+        /* CATEGORIES */
+        .categories {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .categories button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 20px;
+            background: #2b1b12;
+            color: white;
+            cursor: pointer;
+        }
+
+        .categories button:hover {
+            background: #c89b6d;
+        }
+
+        /* MENU */
+        .menu-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+            padding-bottom: 50px;
+        }
+
+        .menu-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+        }
+
+        .menu-info {
+            padding: 18px;
+        }
+
+        .menu-info h3 {
+            margin-bottom: 8px;
+        }
+
+        .menu-info p {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            color: #c89b6d;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .order-btn {
+            width: 100%;
+            padding: 11px;
+            border: none;
+            border-radius: 8px;
+            background: #2b1b12;
+            color: white;
+            cursor: pointer;
+        }
+
+        .order-btn:hover {
+            background: #c89b6d;
+        }
+
+        /* PRE-ORDER BUTTON */
+        .preorder-link {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            background: #c89b6d;
+            color: white;
+            padding: 14px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .preorder-link:hover {
+            background: #2b1b12;
+        }
+
+        #cartCount {
+            background: #2b1b12;
+            padding: 3px 8px;
+            border-radius: 15px;
+            margin-left: 5px;
+        }
+
+        /* LOADING MESSAGE */
+        .loading {
+            text-align: center;
+            width: 100%;
+            color: #777;
+            padding: 30px;
+        }
     </style>
-
 </head>
 
 <body>
 
-<header>
+<!-- NAVBAR -->
+<nav>
 
-<div class="navbar">
+    <div class="logo">Brew&Desk</div>
 
-<div class="logo">
-<i class="fa-solid fa-mug-hot"></i>
- Brew&Desk
-</div>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="reservation.html">Reservation</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
 
-<ul>
+</nav>
 
-<li><a href="index.html">Home</a></li>
 
-<li><a href="menu.html">Menu</a></li>
-
-<li><a href="about.html">About Us</a></li>
-
-<li><a href="reservation.html">Reservation</a></li>
-
-<li><a href="contact.html">Contact</a></li>
-
-</ul>
-
-<div class="nav-buttons">
-
-<a href="login.html" class="login-btn">Login</a>
-
-<a href="register.html" class="register-btn">Register</a>
-
-</div>
-
-</div>
-
-</header>
-
+<!-- HERO -->
 <section class="hero">
 
-<div>
+    <h1>Our Menu</h1>
 
-<h1>Our Menu</h1>
-
-<p>
-Freshly brewed coffee, delicious meals, refreshing beverages,
-and delightful desserts—all prepared with love.
-</p>
-
-</div>
+    <p>Fresh flavours, delicious moments ☕</p>
 
 </section>
 
-<section class="search-section">
 
-<input
-type="text"
-id="search"
-class="search-box"
-placeholder="Search your favourite food..."
->
+<!-- SEARCH -->
+<div class="search-box">
 
-</section>
-
-<section class="category">
-
-<button onclick="filterMenu('all')">All</button>
-
-<button onclick="filterMenu('iced')">Iced</button>
-
-<button onclick="filterMenu('hot')">Hot</button>
-
-<button onclick="filterMenu('toast')">Toast</button>
-
-<button onclick="filterMenu('dessert')">Dessert</button>
-
-</section>
-
-<section class="menu">
-
-<!-- Iced -->
-
-<div class="card iced">
-
-<img src="D:\web_images\iced_1.jpg">
-
-<div class="card-content">
-
-<h3>Espresso</h3>
-
-<p>Rich, bold, and perfectly brewed,our espresso delivers an intense coffee experience in every sip</p>
-
-<div class="price">₹180</div>
-
-<button class="order-btn" onclick="addOrder('Espresso')">
-
-Add to Pre-Order
-
-</button>
-
-</div>
-
-</div>
-<div class="card iced">
-
-<img src="D:\web_images\iced_2.jpg">
-
-<div class="card-content">
-
-<h3>Glace</h3>
-
-<p>A refreshing iced coffee with smooth texture and creamy flavor.</p>
-
-<div class="price">₹170</div>
-
-<button class="order-btn" onclick="addOrder('Glace')">
-
-Add to Pre-Order
-
-</button>
-
-</div>
-
-</div>
-<div class="card iced">
-
-<img src="D:\web_images\iced_3.jpg">
-
-<div class="card-content">
-
-<h3>Latte</h3>
-
-<p>Creamy milk coffee with smooth texture.</p>
-
-<div class="price">₹200</div>
-
-<button class="order-btn" onclick="addOrder('Latte')">
-
-Add to Pre-Order
-
-</button>
-
-</div>
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Search for your favourite food..."
+        onkeyup="searchMenu()">
 
 </div>
 
 
-<div class="card iced">
+<!-- CATEGORIES -->
+<div class="categories">
 
-<img src="D:\web_images\iced_4.jpg">
+    <button onclick="filterMenu('all')">
+        All
+    </button>
 
-<div class="card-content">
+    <button onclick="filterMenu('iced')">
+        Iced
+    </button>
 
-<h3>Cocoa</h3>
+    <button onclick="filterMenu('hot')">
+        Hot
+    </button>
 
-<p>A delicious chocolate drink with a rich and velvety flavor.</p>
+    <button onclick="filterMenu('toast')">
+        Toast
+    </button>
 
-<div class="price">₹190</div>
-
-<button class="order-btn" onclick="addOrder('Cocoa')">
-
-Add to Pre-Order
-
-</button>
-
-</div>
-
-</div>
-
-
-<div class="card iced">
-
-<img src="D:\web_images\iced_5.jpg">
-
-<div class="card-content">
-
-<h3>Mocha</h3>
-
-<p>A creamy mocha delight with the perfect balance of coffee and chocolate.</p>
-
-<div class="price">₹200</div>
-
-<button class="order-btn" onclick="addOrder('Mocha')">
-
-Add to Pre-Order
-
-</button>
+    <button onclick="filterMenu('dessert')">
+        Dessert
+    </button>
 
 </div>
 
-</div>
 
-<!-- hot -->
+<!-- MENU ITEMS -->
+<div class="menu-container" id="menuContainer">
 
-<div class="card hot">
-
-<img src="D:\web_images\hot_1.jpg">
-
-<div class="card-content">
-
-<h3>Chocolate</h3>
-
-<p>Rich hot chocolate with a creamy texture and delightful cocoa flavor.</p>
-
-<div class="price">₹210</div>
-
-<button class="order-btn" onclick="addOrder('Chocolate')">
-Add to Pre-Order
-</button>
-
-</div>
-
-</div>
-
-<div class="card hot">
-
-<img src="D:\web_images\hot_2.jpg">
-
-<div class="card-content">
-
-<h3>Flat White</h3>
-
-<p>Rich espresso blended with velvety steamed milk for a smooth finish.</p>
-
-<div class="price">₹140</div>
-
-<button class="order-btn" onclick="addOrder('Flat White')">
-Add to Pre-Order
-</button>
-
-</div>
-
-</div>
-
-<div class="card hot">
-
-<img src="D:\web_images\hot_3.jpg">
-
-<div class="card-content">
-
-<h3>Cappuccino</h3>
-
-<p>A classic blend of rich espresso, steamed milk, and creamy foam.</p>
-
-<div class="price">₹180</div>
-
-<button class="order-btn" onclick="addOrder('Cappuccino')">
-Add to Pre-Order
-</button>
-
-</div>
-
-</div>
-
-<div class="card hot">
-
-<img src="D:\web_images\hot_4.jpg">
-
-<div class="card-content">
-
-<h3>Cafe latte</h3>
-
-<p>Perfectly balanced espresso and steamed milk with a smooth, creamy finish.</p>
-
-<div class="price">₹190</div>
-
-<button class="order-btn" onclick="addOrder('Cafe latte')">
-Add to Pre-Order
-</button>
-
-</div>
-
-</div>
-
-<div class="card hot">
-
-<img src="D:\web_images\hot_5.jpg">
-
-<div class="card-content">
-
-<h3>Milk Tea</h3>
-
-<p>Freshly brewed milk tea with a smooth, rich, and creamy taste.</p>
-
-<div class="price">₹80</div>
-
-<button class="order-btn" onclick="addOrder('Milk Tea')">
-Add to Pre-Order
-</button>
-
-</div>
+    <div class="loading">
+        Loading menu...
+    </div>
 
 </div>
 
 
-<!-- Toast -->
+<!-- PRE-ORDER CART BUTTON -->
+<a href="preorder.html" class="preorder-link">
 
-<div class="card toast">
+    🛒 Pre-Order
 
-<img src="D:\web_images\toast_1.jpg">
+    <span id="cartCount">
+        0
+    </span>
 
-<div class="card-content">
-
-<h3>Cheese Toast</h3>
-
-<p>Crispy toasted bread topped with rich and creamy melted cheese.</p>
-
-<div class="price">₹150</div>
-
-<button class="order-btn" onclick="addOrder('Cheese Toast')">
-Add to Pre-Order
-</button>
-
-</div>
-
-</div>
-
-<div class="card toast">
-
-<img src="D:\web_images\toast_2.jpg">
-
-<div class="card-content">
-
-<h3>Avocados</h3>
-
-<p>Loaded with fresh vegetables and cheese.</p>
-
-<div class="price">₹220</div>
-
-<button class="order-btn" onclick="addOrder('Avocados')">
-Add to Pre-Order
-</button>
-
-</div>
-
-</div>
-
-<div class="card toast">
-
-<img src="D:\web_images\toast_3.jpg">
-
-<div class="card-content">
-
-<h3>Ham Toast</h3>
-
-<p>Crispy toasted bread topped with rich and creamy melted cheese.</p>
-
-<div class="price">₹210</div>
-
-<button class="order-btn" onclick="addOrder('Ham Toast')">
-Add to Pre-Order
-</button>
-
-</div>
-
-</div>
-
-<div class="card toast">
-
-<img src="D:\web_images\toast_4.jpg">
-
-<div class="card-content">
-
-<h3>Strawberry</h3>
-
-<p>Crispy toasted bread topped with fresh strawberries and a sweet, creamy spread.</p>
-
-<div class="price">₹200</div>
-
-<button class="order-btn" onclick="addOrder('Strawberry')">
-Add to Pre-Order
-</button>
-
-</div>
-
-</div>
-
-<!-- Desserts -->
-
-<div class="card dessert">
-
-<img src="D:\web_images\dessert_1.jpg">
-
-<div class="card-content">
-
-<h3>Cakes</h3>
-
-<p>Rich chocolate layered cake.</p>
-
-<div class="price">₹180</div>
-
-<button class="order-btn" onclick="addOrder('Cake')">
-Add to Pre-Order
-</button>
-
-</div>
-
-</div>
-
-<div class="card dessert">
-
-<img src="D:\web_images\dessert_2.jpg">
-
-<div class="card-content">
-
-<h3>IceCream</h3>
-
-<p>Enjoy a scoop of smooth, creamy ice cream made with premium ingredients and irresistible flavors.</p>
-
-<div class="price">₹200</div>
-
-<button class="order-btn" onclick="addOrder('IceCream')">
-Add to Pre-Order
-</button>
-
-</div>
-
-</div>
-
-<div class="card dessert">
-
-<img src="D:\web_images\dessert_3.jpg">
-
-<div class="card-content">
-
-<h3>CupCake</h3>
-
-<p>Enjoy our freshly baked cupcakes, perfectly moist and finished with rich, delicious frosting.</p>
-
-<div class="price">₹120</div>
-
-<button class="order-btn" onclick="addOrder('CupCake')">
-Add to Pre-Order
-</button>
-
-</div>
-
-</div>
-
-<div class="card dessert">
-
-<img src="D:\web_images\dessert_4.jpg">
-
-<div class="card-content">
-
-<h3>Mochi</h3>
-
-<p>Soft, chewy, and delicately sweet, our mochi is a delightful Japanese treat with a delicious filling.</p>
-
-<div class="price">₹170</div>
-
-<button class="order-btn" onclick="addOrder('Mochi')">
-Add to Pre-Order
-</button>
-
-</div>
-
-</div>
-
-<div class="card dessert">
-
-<img src="D:\web_images\dessert_5.jpg">
-
-<div class="card-content">
-
-<h3>Macaron</h3>
-
-<p>Crisp on the outside, soft on the inside, our macarons are filled with rich, creamy flavors.</p>
-
-<div class="price">₹140</div>
-
-<button class="order-btn" onclick="addOrder('Macaron')">
-Add to Pre-Order
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-<footer>
-
-<div class="footer-content">
-
-<p>&copy; 2026 Brew&Desk. All Rights Reserved.</p>
-
-<div class="social-icons">
-
-<a href="#"><i class="fab fa-facebook-f"></i></a>
-
-<a href="#"><i class="fab fa-instagram"></i></a>
-
-<a href="#"><i class="fab fa-twitter"></i></a>
-
-</div>
-
-</div>
-
-</footer>
-
-<style>
-
-/* ================= FOOTER ================= */
-
-footer{
-
-background:#2b1b12;
-
-padding:25px 40px;
-
-color:white;
-
-}
-
-.footer-content{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-flex-wrap:wrap;
-
-gap:20px;
-
-}
-
-.social-icons a{
-
-color:white;
-
-font-size:20px;
-
-margin-right:15px;
-
-transition:.3s;
-
-}
-
-.social-icons a:hover{
-
-color:#c89b6d;
-
-}
-
-
-/* ================= RESPONSIVE ================= */
-
-@media(max-width:768px){
-
-.navbar{
-
-flex-direction:column;
-
-gap:15px;
-
-}
-
-.navbar ul{
-
-flex-wrap:wrap;
-
-justify-content:center;
-
-}
-
-.hero h1{
-
-font-size:40px;
-
-}
-
-.search-box{
-
-width:95%;
-
-}
-
-.menu{
-
-grid-template-columns:1fr;
-
-padding:20px;
-
-}
-
-.footer-content{
-
-flex-direction:column;
-
-text-align:center;
-
-}
-
-}
-
-</style>
+</a>
 
 
 <script>
 
-// Add to Pre-Order
+let cart =
+    JSON.parse(localStorage.getItem("preOrderCart")) || [];
 
-function addOrder(item){
+let allMenuItems = [];
 
-alert(item + " has been added to your Pre-Order!");
+
+/* =========================
+   ADD TO PRE-ORDER
+========================= */
+
+function addOrder(item) {
+
+    let existingItem =
+        cart.find(product => product.name === item);
+
+    if (existingItem) {
+
+        existingItem.quantity++;
+
+    } else {
+
+        cart.push({
+            name: item,
+            quantity: 1
+        });
+
+    }
+
+    localStorage.setItem(
+        "preOrderCart",
+        JSON.stringify(cart)
+    );
+
+    updateCartCount();
+
+    alert(
+        item +
+        " has been added to your Pre-Order!"
+    );
+}
+
+
+/* =========================
+   UPDATE CART COUNT
+========================= */
+
+function updateCartCount() {
+
+    let count = 0;
+
+    cart.forEach(item => {
+
+        count += item.quantity;
+
+    });
+
+    document.getElementById(
+        "cartCount"
+    ).innerText = count;
+}
+
+
+/* =========================
+   LOAD MENU FROM DATABASE
+========================= */
+
+function loadMenu() {
+
+    fetch("menu.php")
+
+        .then(response => response.json())
+
+        .then(data => {
+
+            if (!data.success) {
+
+                document.getElementById(
+                    "menuContainer"
+                ).innerHTML =
+                    "<p class='loading'>Failed to load menu.</p>";
+
+                return;
+            }
+
+            allMenuItems = data.menu;
+
+            displayMenu(allMenuItems);
+
+        })
+
+        .catch(error => {
+
+            console.error(error);
+
+            document.getElementById(
+                "menuContainer"
+            ).innerHTML =
+                "<p class='loading'>Unable to load menu.</p>";
+
+        });
+}
+
+
+/* =========================
+   DISPLAY MENU
+========================= */
+
+function displayMenu(items) {
+
+    const container =
+        document.getElementById("menuContainer");
+
+    container.innerHTML = "";
+
+
+    if (items.length === 0) {
+
+        container.innerHTML =
+            "<p class='loading'>No menu items available.</p>";
+
+        return;
+    }
+
+
+    items.forEach(item => {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "menu-card";
+
+        card.setAttribute(
+            "data-category",
+            item.category
+        );
+
+
+        /*
+           Image path
+
+           Existing images are stored in:
+           D:\web_images
+        */
+
+        let imageNumber = 1;
+
+        if (item.category === "iced") {
+
+            imageNumber = 1;
+
+        } else if (item.category === "hot") {
+
+            imageNumber = 1;
+
+        } else if (item.category === "toast") {
+
+            imageNumber = 1;
+
+        } else if (item.category === "dessert") {
+
+            imageNumber = 1;
+
+        }
+
+
+        let imagePath =
+            "D:\\web_images\\" +
+            item.category +
+            "_" +
+            imageNumber +
+            ".jpeg";
+
+
+        card.innerHTML = `
+
+            <img
+                src="${imagePath}"
+                onerror="this.style.display='none'"
+            >
+
+            <div class="menu-info">
+
+                <h3>
+                    ${item.item_name}
+                </h3>
+
+                <p>
+                    ${item.description}
+                </p>
+
+                <div class="price">
+                    ₹${item.price}
+                </div>
+
+                <button
+                    class="order-btn"
+                    onclick="addOrder('${item.item_name.replace(/'/g, "\\'")}')">
+
+                    Add to Pre-Order
+
+                </button>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+}
+
+
+/* =========================
+   FILTER BY CATEGORY
+========================= */
+
+function filterMenu(category) {
+
+    if (category === "all") {
+
+        displayMenu(allMenuItems);
+
+    } else {
+
+        const filteredItems =
+            allMenuItems.filter(
+                item =>
+                    item.category === category
+            );
+
+        displayMenu(filteredItems);
+
+    }
+}
+
+
+/* =========================
+   SEARCH MENU
+========================= */
+
+function searchMenu() {
+
+    let searchText =
+        document
+            .getElementById("searchInput")
+            .value
+            .toLowerCase();
+
+
+    const filteredItems =
+        allMenuItems.filter(item =>
+
+            item.item_name
+                .toLowerCase()
+                .includes(searchText)
+
+        );
+
+
+    displayMenu(filteredItems);
 
 }
 
 
-// Category Filter
+/* =========================
+   START
+========================= */
 
-function filterMenu(category){
+loadMenu();
 
-const cards=document.querySelectorAll(".card");
-
-cards.forEach(card=>{
-
-if(category==="all"){
-
-card.style.display="block";
-
-}
-
-else{
-
-if(card.classList.contains(category)){
-
-card.style.display="block";
-
-}
-
-else{
-
-card.style.display="none";
-
-}
-
-}
-
-});
-
-}
-
-
-// Search Function
-
-const search=document.getElementById("search");
-
-search.addEventListener("keyup",function(){
-
-let value=this.value.toLowerCase();
-
-const cards=document.querySelectorAll(".card");
-
-cards.forEach(card=>{
-
-let title=card.querySelector("h3").textContent.toLowerCase();
-
-if(title.includes(value)){
-
-card.style.display="block";
-
-}
-
-else{
-
-card.style.display="none";
-
-}
-
-});
-
-});
-
-
-// Console Message
-
-window.onload=function(){
-
-console.log("Welcome to Brew&Desk Menu Page");
-
-}
+updateCartCount();
 
 </script>
 
 </body>
-
 </html>

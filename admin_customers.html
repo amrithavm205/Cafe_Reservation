@@ -901,219 +901,475 @@ Close
 
 </div>
 
-
 <script>
+
+/* ================= LOAD CUSTOMERS ================= */
+
+let allCustomers = [];
+
+
+async function loadCustomers() {
+
+    try {
+
+        const response =
+            await fetch("admin_customers.php");
+
+        const data =
+            await response.json();
+
+
+        if (!data.success) {
+
+            alert(data.message);
+
+            return;
+
+        }
+
+
+        allCustomers =
+            data.customers;
+
+
+        // Update summary
+        document.querySelector(
+            ".summary-card:nth-child(1) h3"
+        ).textContent =
+            data.summary.total_customers;
+
+
+        document.querySelector(
+            ".summary-card:nth-child(2) h3"
+        ).textContent =
+            data.summary.active_customers;
+
+
+        displayCustomers(allCustomers);
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Failed to load customers."
+        );
+
+    }
+
+}
+
+
+/* ================= DISPLAY CUSTOMERS ================= */
+
+function displayCustomers(customers) {
+
+    const tbody =
+        document.querySelector(
+            "#customerTable tbody"
+        );
+
+
+    tbody.innerHTML = "";
+
+
+    if (customers.length === 0) {
+
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="7"
+                    style="text-align:center;
+                    padding:30px;
+                    color:#777;">
+                    No customers registered yet.
+                </td>
+            </tr>
+        `;
+
+        return;
+
+    }
+
+
+    customers.forEach(function(customer) {
+
+        const firstLetter =
+            customer.name.charAt(0).toUpperCase();
+
+
+        const row =
+            document.createElement("tr");
+
+
+        row.innerHTML = `
+
+            <td>
+
+                <div class="customer-info">
+
+                    <div class="customer-avatar">
+                        ${firstLetter}
+                    </div>
+
+                    <div>
+
+                        <div class="customer-name">
+                            ${customer.name}
+                        </div>
+
+                        <div class="customer-email">
+                            ${customer.email}
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td>
+                ${customer.phone}
+            </td>
+
+
+            <td>
+                ${customer.date_joined}
+            </td>
+
+
+            <td>
+                ${customer.reservations}
+            </td>
+
+
+            <td>
+                ${customer.orders}
+            </td>
+
+
+            <td>
+
+                <span class="status active">
+                    Active
+                </span>
+
+            </td>
+
+
+            <td>
+
+                <button
+                    class="action-btn view-btn"
+                    onclick="viewCustomer(
+                        '${escapeQuotes(customer.name)}',
+                        '${escapeQuotes(customer.email)}',
+                        '${escapeQuotes(customer.phone)}',
+                        '${customer.date_joined}',
+                        '${customer.reservations}',
+                        '${customer.orders}'
+                    )">
+
+                    <i class="fa-solid fa-eye"></i>
+                    View
+
+                </button>
+
+
+                <button
+                    class="action-btn block-btn"
+                    onclick="changeStatus(this)">
+
+                    Block
+
+                </button>
+
+            </td>
+
+        `;
+
+
+        tbody.appendChild(row);
+
+    });
+
+}
+
 
 /* ================= SEARCH ================= */
 
-document.getElementById("searchInput")
-.addEventListener("keyup",function(){
-
-let value =
-this.value.toLowerCase();
-
-let rows =
-document.querySelectorAll("#customerTable tbody tr");
-
-rows.forEach(function(row){
-
-let customer =
-row.cells[0].textContent.toLowerCase();
-
-let mobile =
-row.cells[1].textContent.toLowerCase();
-
-if(customer.includes(value) ||
-mobile.includes(value)){
-
-row.style.display="";
-
-}
-
-else{
-
-row.style.display="none";
-
-}
-
-});
-
-});
+document.getElementById(
+    "searchInput"
+).addEventListener(
+    "keyup",
+    applyFilters
+);
 
 
 /* ================= STATUS FILTER ================= */
 
-document.getElementById("statusFilter")
-.addEventListener("change",function(){
+document.getElementById(
+    "statusFilter"
+).addEventListener(
+    "change",
+    applyFilters
+);
 
-let selected =
-this.value.toLowerCase();
 
-let rows =
-document.querySelectorAll("#customerTable tbody tr");
+/* ================= APPLY FILTERS ================= */
 
-rows.forEach(function(row){
+function applyFilters() {
 
-let status =
-row.cells[5].textContent.trim().toLowerCase();
+    const search =
+        document.getElementById(
+            "searchInput"
+        ).value.toLowerCase();
 
-if(selected === "all" ||
-status === selected){
 
-row.style.display="";
+    const selected =
+        document.getElementById(
+            "statusFilter"
+        ).value.toLowerCase();
+
+
+    const filtered =
+        allCustomers.filter(function(customer) {
+
+            const matchesSearch =
+                customer.name
+                    .toLowerCase()
+                    .includes(search)
+                ||
+                customer.phone
+                    .toLowerCase()
+                    .includes(search)
+                ||
+                customer.email
+                    .toLowerCase()
+                    .includes(search);
+
+
+            const matchesStatus =
+                selected === "all"
+                ||
+                customer.status
+                    .toLowerCase() === selected;
+
+
+            return matchesSearch &&
+                   matchesStatus;
+
+        });
+
+
+    displayCustomers(filtered);
 
 }
-
-else{
-
-row.style.display="none";
-
-}
-
-});
-
-});
 
 
 /* ================= VIEW CUSTOMER ================= */
 
 function viewCustomer(
-name,
-email,
-mobile,
-date,
-reservations,
-orders
-){
+    name,
+    email,
+    mobile,
+    date,
+    reservations,
+    orders
+) {
 
-document.getElementById("modalName").textContent=name;
+    document.getElementById(
+        "modalName"
+    ).textContent = name;
 
-document.getElementById("modalEmail").textContent=email;
 
-document.getElementById("modalMobile").textContent=mobile;
+    document.getElementById(
+        "modalEmail"
+    ).textContent = email;
 
-document.getElementById("modalDate").textContent=date;
 
-document.getElementById("modalReservations").textContent=reservations;
+    document.getElementById(
+        "modalMobile"
+    ).textContent = mobile;
 
-document.getElementById("modalOrders").textContent=orders;
 
-document.getElementById("customerModal")
-.style.display="flex";
+    document.getElementById(
+        "modalDate"
+    ).textContent = date;
+
+
+    document.getElementById(
+        "modalReservations"
+    ).textContent = reservations;
+
+
+    document.getElementById(
+        "modalOrders"
+    ).textContent = orders;
+
+
+    document.getElementById(
+        "customerModal"
+    ).style.display = "flex";
 
 }
 
 
 /* ================= CLOSE MODAL ================= */
 
-function closeCustomerModal(){
+function closeCustomerModal() {
 
-document.getElementById("customerModal")
-.style.display="none";
+    document.getElementById(
+        "customerModal"
+    ).style.display = "none";
 
 }
 
 
 /* ================= CHANGE STATUS ================= */
 
-function changeStatus(button){
+function changeStatus(button) {
 
-let row =
-button.closest("tr");
+    let row =
+        button.closest("tr");
 
-let status =
-row.querySelector(".status");
 
-if(status.classList.contains("active")){
+    let status =
+        row.querySelector(".status");
 
-if(confirm(
-"Are you sure you want to block this customer?"
-)){
 
-status.classList.remove("active");
+    if (
+        status.classList.contains("active")
+    ) {
 
-status.classList.add("blocked");
+        if (
+            confirm(
+                "Are you sure you want to block this customer?"
+            )
+        ) {
 
-status.textContent="Blocked";
+            status.classList.remove("active");
 
-button.classList.remove("block-btn");
+            status.classList.add("blocked");
 
-button.classList.add("unblock-btn");
+            status.textContent = "Blocked";
 
-button.textContent="Unblock";
 
-}
+            button.classList.remove(
+                "block-btn"
+            );
 
-}
+            button.classList.add(
+                "unblock-btn"
+            );
 
-else{
+            button.textContent =
+                "Unblock";
 
-if(confirm(
-"Do you want to unblock this customer?"
-)){
+        }
 
-status.classList.remove("blocked");
+    }
 
-status.classList.add("active");
+    else {
 
-status.textContent="Active";
+        if (
+            confirm(
+                "Do you want to unblock this customer?"
+            )
+        ) {
 
-button.classList.remove("unblock-btn");
+            status.classList.remove(
+                "blocked"
+            );
 
-button.classList.add("block-btn");
+            status.classList.add(
+                "active"
+            );
 
-button.textContent="Block";
+            status.textContent =
+                "Active";
 
-}
 
-}
+            button.classList.remove(
+                "unblock-btn"
+            );
+
+            button.classList.add(
+                "block-btn"
+            );
+
+            button.textContent =
+                "Block";
+
+        }
+
+    }
 
 }
 
 
 /* ================= LOGOUT ================= */
 
-function logoutAdmin(){
+function logoutAdmin() {
 
-let confirmLogout =
-confirm("Are you sure you want to logout?");
+    let confirmLogout =
+        confirm(
+            "Are you sure you want to logout?"
+        );
 
-if(confirmLogout){
 
-alert("You have been logged out successfully.");
+    if (confirmLogout) {
 
-return true;
+        alert(
+            "You have been logged out successfully."
+        );
 
-}
+        return true;
 
-return false;
+    }
+
+
+    return false;
 
 }
 
 
 /* ================= CLOSE MODAL ON OUTSIDE CLICK ================= */
 
-window.onclick=function(event){
+window.onclick = function(event) {
 
-let modal =
-document.getElementById("customerModal");
+    let modal =
+        document.getElementById(
+            "customerModal"
+        );
 
-if(event.target === modal){
 
-closeCustomerModal();
+    if (event.target === modal) {
+
+        closeCustomerModal();
+
+    }
+
+};
+
+
+/* ================= ESCAPE QUOTES ================= */
+
+function escapeQuotes(value) {
+
+    return String(value)
+        .replace(/\\/g, "\\\\")
+        .replace(/'/g, "\\'");
 
 }
 
-}
 
+/* ================= START ================= */
 
-/* ================= CONSOLE ================= */
+window.onload = function() {
 
-window.onload=function(){
-
-console.log(
-"Welcome to Brew&Desk Customer Management"
-);
+    loadCustomers();
 
 };
 

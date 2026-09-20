@@ -4,9 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Brew&Desk | Orders</title>
 
@@ -363,10 +361,6 @@ tr:hover{
     background:#3c7a4c;
 }
 
-.cancel-btn{
-    background:#b22222;
-}
-
 .action-btn:hover{
     opacity:.85;
 }
@@ -475,95 +469,60 @@ Admin Panel
 <ul>
 
 <li>
-
 <a href="admin_dashboard.html">
-
 <i class="fa-solid fa-gauge"></i>
-
 <span>Dashboard</span>
-
 </a>
-
 </li>
 
 <li>
-
 <a href="admin_reservation.html">
-
 <i class="fa-solid fa-calendar-check"></i>
-
 <span>Reservations</span>
-
 </a>
-
 </li>
 
 <li>
-
-<a href="admin_orders.html">
-
+<a href="admin_orders.html" class="active">
 <i class="fa-solid fa-cart-shopping"></i>
-
 <span>Orders</span>
-
 </a>
-
 </li>
 
 <li>
-
 <a href="admin_menu.html">
-
 <i class="fa-solid fa-utensils"></i>
-
 <span>Menu</span>
-
 </a>
-
 </li>
 
 <li>
-
 <a href="admin_customers.html">
-
 <i class="fa-solid fa-users"></i>
-
 <span>Customers</span>
-
 </a>
-
 </li>
 
 <li>
-
 <a href="admin_report.html">
-
 <i class="fa-solid fa-chart-column"></i>
-
 <span>Reports</span>
-
 </a>
-
 </li>
 
 <li>
-
 <a href="admin_profile.html">
-
 <i class="fa-solid fa-user"></i>
-
 <span>My Profile</span>
-
 </a>
-
 </li>
 
 </ul>
 
-
 <div class="logout">
 
-<a href="admin_login.html" onclick="return logoutAdmin()">
+<a href="admin_login.html"
+onclick="return logoutAdmin()">
 
 <i class="fa-solid fa-right-from-bracket"></i>
 
@@ -611,7 +570,9 @@ Admin Panel
 
 <h2>Manage Orders</h2>
 
-<p>View and manage customer pre-orders placed through Brew&Desk.</p>
+<p>
+View and manage customer pre-orders placed through Brew&Desk.
+</p>
 
 </div>
 
@@ -619,7 +580,6 @@ Admin Panel
 <!-- ================= SUMMARY ================= -->
 
 <div class="summary">
-
 
 <div class="summary-card">
 
@@ -631,7 +591,7 @@ Admin Panel
 
 <div>
 
-<h3>0</h3>
+<h3 id="totalOrders">0</h3>
 
 <p>Total Orders</p>
 
@@ -650,7 +610,7 @@ Admin Panel
 
 <div>
 
-<h3>0</h3>
+<h3 id="pendingOrders">0</h3>
 
 <p>Pending Orders</p>
 
@@ -669,7 +629,7 @@ Admin Panel
 
 <div>
 
-<h3>0</h3>
+<h3 id="preparingOrders">0</h3>
 
 <p>Preparing</p>
 
@@ -688,14 +648,13 @@ Admin Panel
 
 <div>
 
-<h3>₹0</h3>
+<h3 id="totalRevenue">₹0</h3>
 
 <p>Total Revenue</p>
 
 </div>
 
 </div>
-
 
 </div>
 
@@ -704,9 +663,7 @@ Admin Panel
 
 <div class="order-box">
 
-
 <div class="toolbar">
-
 
 <div class="search-box">
 
@@ -718,7 +675,6 @@ id="searchInput"
 placeholder="Search order or customer...">
 
 </div>
-
 
 <div class="filter">
 
@@ -752,21 +708,13 @@ placeholder="Search order or customer...">
 <tr>
 
 <th>Order ID</th>
-
 <th>Customer</th>
-
 <th>Items</th>
-
 <th>Date</th>
-
 <th>Time</th>
-
 <th>Total</th>
-
 <th>Payment</th>
-
 <th>Status</th>
-
 <th>Actions</th>
 
 </tr>
@@ -774,16 +722,20 @@ placeholder="Search order or customer...">
 </thead>
 
 
-<tbody>
+<tbody id="orderBody">
 
-    <tr>
-        <td colspan="9" style="text-align:center; padding:30px; color:#777;">
-            No orders yet.
-        </td>
-    </tr>
+<tr>
+
+<td colspan="9"
+style="text-align:center;padding:30px;color:#777;">
+
+Loading orders...
+
+</td>
+
+</tr>
 
 </tbody>
-
 
 </table>
 
@@ -798,73 +750,259 @@ placeholder="Search order or customer...">
 
 <script>
 
+/* ================= LOAD ORDERS ================= */
+
+function loadOrders(){
+
+    fetch("admin_orders.php")
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        if(!data.success){
+
+            alert(data.message);
+            return;
+
+        }
+
+
+        /* ===== SUMMARY ===== */
+
+        document.getElementById("totalOrders").textContent =
+            data.summary.total_orders;
+
+        document.getElementById("pendingOrders").textContent =
+            data.summary.pending_orders;
+
+        document.getElementById("preparingOrders").textContent =
+            data.summary.preparing_orders;
+
+        document.getElementById("totalRevenue").textContent =
+            "₹" + Number(data.summary.total_revenue).toFixed(2);
+
+
+        /* ===== ORDER TABLE ===== */
+
+        const tbody =
+            document.getElementById("orderBody");
+
+        tbody.innerHTML = "";
+
+
+        if(data.orders.length === 0){
+
+            tbody.innerHTML = `
+
+                <tr>
+
+                    <td colspan="9"
+                    style="text-align:center;padding:30px;color:#777;">
+
+                    No orders yet.
+
+                    </td>
+
+                </tr>
+
+            `;
+
+            return;
+
+        }
+
+
+        data.orders.forEach(order => {
+
+            let statusClass =
+                order.status.toLowerCase();
+
+            const row =
+                document.createElement("tr");
+
+
+            row.innerHTML = `
+
+                <td>#${order.order_id}</td>
+
+                <td>${escapeHTML(order.customer_name)}</td>
+
+                <td>${escapeHTML(order.items)}</td>
+
+                <td>${order.order_date}</td>
+
+                <td>${order.order_time}</td>
+
+                <td>₹${Number(order.total_amount).toFixed(2)}</td>
+
+                <td>${order.payment}</td>
+
+                <td>
+
+                    <span class="status ${statusClass}">
+
+                        ${escapeHTML(order.status)}
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <button
+                    class="action-btn view-btn"
+                    onclick="viewOrder(${order.order_id})">
+
+                    View
+
+                    </button>
+
+
+                    <button
+                    class="action-btn update-btn"
+                    onclick="updateOrder(${order.order_id})">
+
+                    Update
+
+                    </button>
+
+                </td>
+
+            `;
+
+
+            tbody.appendChild(row);
+
+        });
+
+    })
+
+    .catch(error => {
+
+        console.error(error);
+
+        document.getElementById("orderBody").innerHTML = `
+
+            <tr>
+
+                <td colspan="9"
+                style="text-align:center;padding:30px;color:#b22222;">
+
+                Unable to load orders.
+
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+}
+
+
+/* ================= ESCAPE HTML ================= */
+
+function escapeHTML(value){
+
+    const div = document.createElement("div");
+
+    div.textContent = value;
+
+    return div.innerHTML;
+
+}
+
+
 /* ================= SEARCH ================= */
 
-document.getElementById("searchInput")
+document
+.getElementById("searchInput")
 .addEventListener("keyup",function(){
 
-let value =
-this.value.toLowerCase();
+    let value =
+        this.value.toLowerCase();
 
-let rows =
-document.querySelectorAll("#orderTable tbody tr");
+    let rows =
+        document.querySelectorAll(
+            "#orderTable tbody tr"
+        );
 
-rows.forEach(function(row){
+    rows.forEach(function(row){
 
-let order =
-row.cells[0].textContent.toLowerCase();
+        if(row.cells.length < 2){
+            return;
+        }
 
-let customer =
-row.cells[1].textContent.toLowerCase();
+        let order =
+            row.cells[0]
+            .textContent
+            .toLowerCase();
 
-if(order.includes(value) ||
-customer.includes(value)){
+        let customer =
+            row.cells[1]
+            .textContent
+            .toLowerCase();
 
-row.style.display="";
+        if(
+            order.includes(value) ||
+            customer.includes(value)
+        ){
 
-}
+            row.style.display = "";
 
-else{
+        }else{
 
-row.style.display="none";
+            row.style.display = "none";
 
-}
+        }
 
-});
+    });
 
 });
 
 
 /* ================= STATUS FILTER ================= */
 
-document.getElementById("statusFilter")
+document
+.getElementById("statusFilter")
 .addEventListener("change",function(){
 
-let selected =
-this.value.toLowerCase();
+    let selected =
+        this.value.toLowerCase();
 
-let rows =
-document.querySelectorAll("#orderTable tbody tr");
+    let rows =
+        document.querySelectorAll(
+            "#orderTable tbody tr"
+        );
 
-rows.forEach(function(row){
+    rows.forEach(function(row){
 
-let status =
-row.cells[7].textContent.trim().toLowerCase();
+        if(row.cells.length < 8){
+            return;
+        }
 
-if(selected === "all" ||
-status === selected){
+        let status =
+            row.cells[7]
+            .textContent
+            .trim()
+            .toLowerCase();
 
-row.style.display="";
+        if(
+            selected === "all" ||
+            status === selected
+        ){
 
-}
+            row.style.display = "";
 
-else{
+        }else{
 
-row.style.display="none";
+            row.style.display = "none";
 
-}
+        }
 
-});
+    });
 
 });
 
@@ -873,10 +1011,10 @@ row.style.display="none";
 
 function viewOrder(id){
 
-alert(
-"Order ID: " + id +
-"\n\nOrder details will be displayed here after backend integration."
-);
+    alert(
+        "Order ID: " + id +
+        "\n\nOrder details are shown in the Orders table."
+    );
 
 }
 
@@ -885,20 +1023,101 @@ alert(
 
 function updateOrder(id){
 
-let status =
-prompt(
-"Enter new status:\n\nPending\nConfirmed\nPreparing\nCompleted\nCancelled"
-);
+    let status = prompt(
+        "Enter new status:\n\n" +
+        "Pending\n" +
+        "Confirmed\n" +
+        "Preparing\n" +
+        "Completed\n" +
+        "Cancelled"
+    );
 
-if(status !== null && status.trim() !== ""){
 
-alert(
-"Order " + id +
-" status updated to: " +
-status
-);
+    if(status === null || status.trim() === ""){
+        return;
+    }
 
-}
+
+    status = status.trim();
+
+
+    /* Check valid status */
+
+    const allowedStatuses = [
+        "Pending",
+        "Confirmed",
+        "Preparing",
+        "Completed",
+        "Cancelled"
+    ];
+
+
+    if(!allowedStatuses.includes(status)){
+
+        alert(
+            "Invalid status!\n\n" +
+            "Please enter exactly:\n" +
+            "Pending, Confirmed, Preparing, Completed or Cancelled."
+        );
+
+        return;
+
+    }
+
+
+    /* Send update to PHP */
+
+    fetch("update_order.php", {
+
+        method:"POST",
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify({
+
+            order_id:id,
+            status:status
+
+        })
+
+    })
+
+
+    .then(response => response.json())
+
+
+    .then(data => {
+
+        if(data.success){
+
+            alert(
+                "Order status updated successfully! ✅"
+            );
+
+            /* Reload data from database */
+
+            loadOrders();
+
+        }else{
+
+            alert(data.message);
+
+        }
+
+    })
+
+
+    .catch(error => {
+
+        console.error(error);
+
+        alert(
+            "Something went wrong while updating the order."
+        );
+
+    });
 
 }
 
@@ -907,33 +1126,38 @@ status
 
 function logoutAdmin(){
 
-let confirmLogout =
-confirm("Are you sure you want to logout?");
+    let confirmLogout =
+        confirm(
+            "Are you sure you want to logout?"
+        );
 
-if(confirmLogout){
 
-alert("You have been logged out successfully.");
+    if(confirmLogout){
 
-return true;
+        alert(
+            "You have been logged out successfully."
+        );
+
+        return true;
+
+    }
+
+
+    return false;
 
 }
 
-return false;
 
-}
+/* ================= PAGE LOAD ================= */
 
+window.onload = function(){
 
-/* ================= CONSOLE ================= */
-
-window.onload=function(){
-
-console.log(
-"Welcome to Brew&Desk Orders"
-);
+    loadOrders();
 
 };
 
 </script>
+
 
 </body>
 

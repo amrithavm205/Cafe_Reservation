@@ -4,7 +4,6 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Brew&Desk | Reservations</title>
@@ -25,8 +24,6 @@ body{
     background:#f8f5f2;
     color:#333;
 }
-
-/* ================= SIDEBAR ================= */
 
 .sidebar{
     position:fixed;
@@ -91,8 +88,6 @@ body{
     text-align:center;
 }
 
-/* ================= LOGOUT ================= */
-
 .sidebar .logout{
     position:absolute;
     bottom:25px;
@@ -117,14 +112,10 @@ body{
     background:#8f1b1b;
 }
 
-/* ================= MAIN ================= */
-
 .main{
     margin-left:250px;
     min-height:100vh;
 }
-
-/* ================= TOPBAR ================= */
 
 .topbar{
     background:white;
@@ -163,8 +154,6 @@ body{
     color:#2b1b12;
 }
 
-/* ================= CONTENT ================= */
-
 .content{
     padding:30px;
 }
@@ -181,8 +170,6 @@ body{
 .page-heading p{
     color:#666;
 }
-
-/* ================= SUMMARY CARDS ================= */
 
 .summary{
     display:grid;
@@ -224,16 +211,12 @@ body{
     font-size:14px;
 }
 
-/* ================= RESERVATION BOX ================= */
-
 .reservation-box{
     background:white;
     padding:25px;
     border-radius:12px;
     box-shadow:0 5px 15px rgba(0,0,0,.08);
 }
-
-/* ================= TOOLBAR ================= */
 
 .toolbar{
     display:flex;
@@ -277,8 +260,6 @@ body{
     cursor:pointer;
 }
 
-/* ================= TABLE ================= */
-
 .table-container{
     overflow-x:auto;
 }
@@ -307,8 +288,6 @@ tr:hover{
     background:#f8f5f2;
 }
 
-/* ================= STATUS ================= */
-
 .status{
     display:inline-block;
     padding:6px 11px;
@@ -336,8 +315,6 @@ tr:hover{
     background:#dbeafe;
     color:#1e40af;
 }
-
-/* ================= ACTION BUTTONS ================= */
 
 .action-btn{
     border:none;
@@ -368,8 +345,6 @@ tr:hover{
 .action-btn:hover{
     opacity:.85;
 }
-
-/* ================= RESPONSIVE ================= */
 
 @media(max-width:1100px){
 
@@ -447,108 +422,66 @@ tr:hover{
 
 <body>
 
-<!-- ================= SIDEBAR ================= -->
-
 <aside class="sidebar">
 
 <div class="logo">
-
 <i class="fa-solid fa-mug-hot"></i>
-
 Brew&Desk
-
 </div>
 
 <div class="admin-title">
-
 Admin Panel
-
 </div>
 
 <ul>
 
 <li>
-
 <a href="admin_dashboard.html">
-
 <i class="fa-solid fa-gauge"></i>
-
 <span>Dashboard</span>
-
 </a>
-
 </li>
 
 <li>
-
 <a href="admin_reservation.html" class="active">
-
 <i class="fa-solid fa-calendar-check"></i>
-
 <span>Reservations</span>
-
 </a>
-
 </li>
 
 <li>
-
 <a href="admin_orders.html">
-
 <i class="fa-solid fa-cart-shopping"></i>
-
 <span>Orders</span>
-
 </a>
-
 </li>
 
 <li>
-
 <a href="admin_menu.html">
-
 <i class="fa-solid fa-utensils"></i>
-
 <span>Menu</span>
-
 </a>
-
 </li>
 
 <li>
-
 <a href="admin_customers.html">
-
 <i class="fa-solid fa-users"></i>
-
 <span>Customers</span>
-
 </a>
-
 </li>
 
 <li>
-
 <a href="admin_report.html">
-
 <i class="fa-solid fa-chart-column"></i>
-
 <span>Reports</span>
-
 </a>
-
 </li>
 
 <li>
-
 <a href="admin_profile.html">
-
 <i class="fa-solid fa-user"></i>
-
 <span>My Profile</span>
-
 </a>
-
 </li>
 
 </ul>
@@ -568,12 +501,7 @@ Admin Panel
 </aside>
 
 
-<!-- ================= MAIN ================= -->
-
 <main class="main">
-
-
-<!-- TOPBAR -->
 
 <div class="topbar">
 
@@ -582,9 +510,7 @@ Admin Panel
 <div class="admin-profile">
 
 <div class="admin-avatar">
-
 <i class="fa-solid fa-user-shield"></i>
-
 </div>
 
 <span>Administrator</span>
@@ -594,12 +520,7 @@ Admin Panel
 </div>
 
 
-<!-- CONTENT -->
-
 <div class="content">
-
-
-<!-- PAGE HEADING -->
 
 <div class="page-heading">
 
@@ -610,21 +531,17 @@ Admin Panel
 </div>
 
 
-<!-- ================= SUMMARY ================= -->
-
 <div class="summary">
 
 <div class="summary-card">
 
 <div class="summary-icon">
-
 <i class="fa-solid fa-calendar-days"></i>
-
 </div>
 
 <div>
 
-<h3>0</h3>
+<h3 id="totalReservations">0</h3>
 
 <p>Total Reservations</p>
 
@@ -636,14 +553,12 @@ Admin Panel
 <div class="summary-card">
 
 <div class="summary-icon">
-
 <i class="fa-solid fa-clock"></i>
-
 </div>
 
 <div>
 
-<h3>0</h3>
+<h3 id="pendingReservations">0</h3>
 
 <p>Pending Reservations</p>
 
@@ -655,14 +570,12 @@ Admin Panel
 <div class="summary-card">
 
 <div class="summary-icon">
-
 <i class="fa-solid fa-circle-check"></i>
-
 </div>
 
 <div>
 
-<h3>0</h3>
+<h3 id="approvedReservations">0</h3>
 
 <p>Approved Reservations</p>
 
@@ -672,8 +585,6 @@ Admin Panel
 
 </div>
 
-
-<!-- ================= RESERVATION TABLE ================= -->
 
 <div class="reservation-box">
 
@@ -721,34 +632,30 @@ placeholder="Search customer...">
 <tr>
 
 <th>Reservation ID</th>
-
 <th>Customer</th>
-
 <th>Date</th>
-
 <th>Time</th>
-
 <th>Guests</th>
-
 <th>Table</th>
-
 <th>Status</th>
-
 <th>Actions</th>
 
 </tr>
 
 </thead>
 
-<tbody>
+<tbody id="reservationBody">
 
+<tr>
 
-    <tr>
-        <td colspan="8" style="text-align:center; padding:30px; color:#777;">
-            No reservations yet.
-        </td>
-    </tr>
+<td colspan="8"
+style="text-align:center;padding:30px;color:#777;">
 
+Loading reservations...
+
+</td>
+
+</tr>
 
 </tbody>
 
@@ -765,20 +672,215 @@ placeholder="Search customer...">
 
 <script>
 
+/* ================= LOAD RESERVATIONS ================= */
+
+function loadReservations(){
+
+fetch("admin_reservation.php")
+
+.then(response => response.json())
+
+.then(data => {
+
+if(!data.success){
+
+alert(data.message);
+return;
+
+}
+
+
+/* SUMMARY */
+
+document.getElementById("totalReservations").textContent =
+data.summary.total_reservations;
+
+document.getElementById("pendingReservations").textContent =
+data.summary.pending_reservations;
+
+document.getElementById("approvedReservations").textContent =
+data.summary.approved_reservations;
+
+
+/* TABLE */
+
+const tbody =
+document.getElementById("reservationBody");
+
+tbody.innerHTML = "";
+
+
+if(data.reservations.length === 0){
+
+tbody.innerHTML = `
+
+<tr>
+
+<td colspan="8"
+style="text-align:center;padding:30px;color:#777;">
+
+No reservations yet.
+
+</td>
+
+</tr>
+
+`;
+
+return;
+
+}
+
+
+data.reservations.forEach(function(reservation){
+
+let statusClass =
+reservation.status.toLowerCase();
+
+
+let row =
+document.createElement("tr");
+
+
+row.innerHTML = `
+
+<td>
+#${reservation.reservation_id}
+</td>
+
+<td>
+${escapeHTML(reservation.customer_name)}
+</td>
+
+<td>
+${reservation.reservation_date}
+</td>
+
+<td>
+${reservation.reservation_time}
+</td>
+
+<td>
+${reservation.guests}
+</td>
+
+<td>
+${escapeHTML(reservation.table)}
+</td>
+
+<td>
+
+<span class="status ${statusClass}">
+
+${escapeHTML(reservation.status)}
+
+</span>
+
+</td>
+
+<td>
+
+<button
+class="action-btn view-btn"
+onclick="viewReservation(${reservation.reservation_id})">
+
+View
+
+</button>
+
+<button
+class="action-btn approve-btn"
+onclick="approveReservation(${reservation.reservation_id})">
+
+Approve
+
+</button>
+
+<button
+class="action-btn reject-btn"
+onclick="rejectReservation(${reservation.reservation_id})">
+
+Reject
+
+</button>
+
+<button
+class="action-btn cancel-btn"
+onclick="cancelReservation(${reservation.reservation_id})">
+
+Cancel
+
+</button>
+
+</td>
+
+`;
+
+
+tbody.appendChild(row);
+
+});
+
+})
+
+.catch(error => {
+
+console.error(error);
+
+document.getElementById("reservationBody").innerHTML = `
+
+<tr>
+
+<td colspan="8"
+style="text-align:center;padding:30px;color:#b22222;">
+
+Unable to load reservations.
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+
+/* ================= ESCAPE HTML ================= */
+
+function escapeHTML(value){
+
+const div =
+document.createElement("div");
+
+div.textContent =
+value ?? "";
+
+return div.innerHTML;
+
+}
+
+
 /* ================= SEARCH ================= */
 
-const searchInput =
-document.getElementById("searchInput");
-
-searchInput.addEventListener("keyup", function(){
+document
+.getElementById("searchInput")
+.addEventListener("keyup",function(){
 
 let value =
 this.value.toLowerCase();
 
 let rows =
-document.querySelectorAll("#reservationTable tbody tr");
+document.querySelectorAll(
+"#reservationTable tbody tr"
+);
 
 rows.forEach(function(row){
+
+if(row.cells.length < 2){
+return;
+}
 
 let customer =
 row.cells[1].textContent.toLowerCase();
@@ -786,16 +888,16 @@ row.cells[1].textContent.toLowerCase();
 let reservation =
 row.cells[0].textContent.toLowerCase();
 
-if(customer.includes(value) ||
-reservation.includes(value)){
+if(
+customer.includes(value) ||
+reservation.includes(value)
+){
 
-row.style.display="";
+row.style.display = "";
 
-}
+}else{
 
-else{
-
-row.style.display="none";
+row.style.display = "none";
 
 }
 
@@ -804,32 +906,42 @@ row.style.display="none";
 });
 
 
-/* ================= STATUS FILTER ================= */
+/* ================= FILTER ================= */
 
-document.getElementById("statusFilter")
-.addEventListener("change", function(){
+document
+.getElementById("statusFilter")
+.addEventListener("change",function(){
 
 let selected =
 this.value.toLowerCase();
 
 let rows =
-document.querySelectorAll("#reservationTable tbody tr");
+document.querySelectorAll(
+"#reservationTable tbody tr"
+);
 
 rows.forEach(function(row){
 
-let status =
-row.cells[6].textContent.trim().toLowerCase();
-
-if(selected === "all" ||
-status === selected){
-
-row.style.display="";
-
+if(row.cells.length < 7){
+return;
 }
 
-else{
+let status =
+row.cells[6]
+.textContent
+.trim()
+.toLowerCase();
 
-row.style.display="none";
+if(
+selected === "all" ||
+status === selected
+){
+
+row.style.display = "";
+
+}else{
+
+row.style.display = "none";
 
 }
 
@@ -844,7 +956,7 @@ function viewReservation(id){
 
 alert(
 "Reservation ID: " + id +
-"\n\nDetailed reservation information will be displayed here after backend integration."
+"\n\nCustomer reservation details are shown in the table."
 );
 
 }
@@ -854,16 +966,10 @@ alert(
 
 function approveReservation(id){
 
-if(confirm(
-"Approve reservation " + id + "?"
-)){
-
 alert(
 "Reservation " + id +
-" has been approved."
+" is currently Pending.\n\nStatus update backend will be connected next."
 );
-
-}
 
 }
 
@@ -872,16 +978,10 @@ alert(
 
 function rejectReservation(id){
 
-if(confirm(
-"Reject reservation " + id + "?"
-)){
-
 alert(
 "Reservation " + id +
-" has been rejected."
+" rejection will be connected next."
 );
-
-}
 
 }
 
@@ -890,16 +990,10 @@ alert(
 
 function cancelReservation(id){
 
-if(confirm(
-"Are you sure you want to cancel reservation " + id + "?"
-)){
-
 alert(
 "Reservation " + id +
-" has been cancelled."
+" cancellation will be connected next."
 );
-
-}
 
 }
 
@@ -924,13 +1018,11 @@ return false;
 }
 
 
-/* ================= CONSOLE ================= */
+/* ================= PAGE LOAD ================= */
 
-window.onload=function(){
+window.onload = function(){
 
-console.log(
-"Welcome to Brew&Desk Reservations"
-);
+loadReservations();
 
 };
 
