@@ -538,7 +538,7 @@ Admin Panel
 
 <li>
 
-<a href="admin_report.html">
+<a href="admin_report.php">
 
 <i class="fa-solid fa-chart-column"></i>
 
@@ -762,7 +762,7 @@ Quick Actions
 
 </a>
 
-<a href="admin_report.html">
+<a href="admin_report.php">
 
 <i class="fa-solid fa-chart-column"></i>
 
