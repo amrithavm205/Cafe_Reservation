@@ -538,7 +538,7 @@ Admin Panel
 
 <li>
 
-<a href="admin_report.php">
+<a href="admin_report.php" class="active">
 
 <i class="fa-solid fa-chart-column"></i>
 
