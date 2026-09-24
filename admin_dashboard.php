@@ -13,22 +13,43 @@ if (!isset($_SESSION["admin_id"])) {
 
 /* ================= DASHBOARD STATISTICS ================= */
 
+$total_customers = 0;
+$total_reservations = 0;
+$total_orders = 0;
+$total_revenue = 0;
+
+
 /* Total Customers */
 $result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM users");
+
+if (!$result) {
+    die("Customers query error: " . mysqli_error($conn));
+}
+
 $row = mysqli_fetch_assoc($result);
-$total_customers = $row["total"];
+$total_customers = (int)$row["total"];
 
 
 /* Total Reservations */
 $result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM reservations");
+
+if (!$result) {
+    die("Reservations query error: " . mysqli_error($conn));
+}
+
 $row = mysqli_fetch_assoc($result);
-$total_reservations = $row["total"];
+$total_reservations = (int)$row["total"];
 
 
 /* Total Orders */
 $result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM orders");
+
+if (!$result) {
+    die("Orders query error: " . mysqli_error($conn));
+}
+
 $row = mysqli_fetch_assoc($result);
-$total_orders = $row["total"];
+$total_orders = (int)$row["total"];
 
 
 /* Total Revenue */
@@ -37,8 +58,12 @@ $result = mysqli_query(
     "SELECT COALESCE(SUM(total_amount), 0) AS revenue FROM orders"
 );
 
+if (!$result) {
+    die("Revenue query error: " . mysqli_error($conn));
+}
+
 $row = mysqli_fetch_assoc($result);
-$total_revenue = $row["revenue"];
+$total_revenue = (float)$row["revenue"];
 
 ?>
 
@@ -538,7 +563,7 @@ Admin Panel
 
 <li>
 
-<a href="admin_report.php" class="active">
+<a href="admin_report.php">
 
 <i class="fa-solid fa-chart-column"></i>
 
@@ -578,6 +603,7 @@ Admin Panel
 </aside>
 
 
+
 <!-- ================= MAIN ================= -->
 
 <main class="main">
@@ -604,6 +630,7 @@ Admin Panel
 </div>
 
 
+
 <!-- CONTENT -->
 
 <div class="content">
@@ -622,6 +649,7 @@ Manage your Brew&Desk reservations, orders, customers and menu from here.
 </p>
 
 </div>
+
 
 
 <!-- ================= STATISTICS ================= -->
@@ -650,6 +678,7 @@ Manage your Brew&Desk reservations, orders, customers and menu from here.
 </div>
 
 
+
 <!-- RESERVATIONS -->
 
 <div class="stat-card">
@@ -671,6 +700,7 @@ Manage your Brew&Desk reservations, orders, customers and menu from here.
 </div>
 
 
+
 <!-- ORDERS -->
 
 <div class="stat-card">
@@ -690,6 +720,7 @@ Manage your Brew&Desk reservations, orders, customers and menu from here.
 </div>
 
 </div>
+
 
 
 <!-- REVENUE -->
@@ -716,6 +747,7 @@ Manage your Brew&Desk reservations, orders, customers and menu from here.
 </div>
 
 
+
 <!-- ================= QUICK ACTIONS ================= -->
 
 <div class="quick-actions">
@@ -730,6 +762,7 @@ Quick Actions
 
 <div class="action-buttons">
 
+
 <a href="admin_reservation.html">
 
 <i class="fa-solid fa-calendar-check"></i>
@@ -737,6 +770,7 @@ Quick Actions
 &nbsp; Manage Reservations
 
 </a>
+
 
 <a href="admin_orders.html">
 
@@ -746,6 +780,7 @@ Quick Actions
 
 </a>
 
+
 <a href="admin_menu.html">
 
 <i class="fa-solid fa-utensils"></i>
@@ -753,6 +788,7 @@ Quick Actions
 &nbsp; Manage Menu
 
 </a>
+
 
 <a href="admin_customers.html">
 
@@ -762,6 +798,7 @@ Quick Actions
 
 </a>
 
+
 <a href="admin_report.php">
 
 <i class="fa-solid fa-chart-column"></i>
@@ -769,6 +806,7 @@ Quick Actions
 &nbsp; View Reports
 
 </a>
+
 
 </div>
 
@@ -778,6 +816,7 @@ Quick Actions
 </div>
 
 </main>
+
 
 
 <script>
@@ -812,11 +851,13 @@ window.onload=function(){
 
 </script>
 
+
 </body>
 
 </html>
 
-
 <?php
+
 mysqli_close($conn);
+
 ?>
